@@ -6,3 +6,23 @@ body{
 .rtl {
     direction: rtl;
 }
+.control-label{
+	float:right;
+}
+.form-container{
+	padding:12px;
+	margin:17px;
+}
+header{
+	border-bottom:1px solid rgb(180, 180, 180);
+	text-align:center;
+	background-color:rgb(245, 245, 245);
+}
+header div{
+	text-align:center;
+}
+.CToWUd{
+	margin:auto;
+	margin-top:40px;
+	margin-bottom:40px;
+}
