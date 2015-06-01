@@ -7,20 +7,16 @@ $(document).ready(function(){
 	
 });
 $(".news .btn-form-display").click(function(){
-	$(this).toggle(400,function(){
-		$(".news .form-container").toggle(400);
-	});
+	$(".matzov-for-matzov-form").hide();
+	$(".news-form").toggle(300);
 })
 $(".matzov-for-matzov .btn-form-display").click(function(){
-	$(this).toggle(400,function(){
-		$(".matzov-for-matzov .form-container").toggle(400);
-	});
+	$(".news-form").hide();
+	$(".matzov-for-matzov-form").toggle(300);
 })
 $(".jobs .btn-form-display").click(function(){
-	$(this).toggle(400,function(){
-		$(".jobs .form-container").toggle(400);
-	});
+	$(".jobs-form").toggle(300);
 })
-$(".cancel").click(function(){
-	
+$(".btn-cancel").click(function(){
+	$(this).parents(".form-container").hide(300);
 })
