@@ -53,3 +53,29 @@ form h5{
 	font-size:1.2em;
 	text-align:center;
 }
+h2{
+	margin:20px;
+	line-height:125%;
+}
+.newsletter-title{
+	margin-bottom:30px;
+}
+#newsletter-container .section{
+	padding:30px;
+	float:right;
+	text-align:right;
+}
+#newsletter-container hr{
+	margin-bottom:35px;
+}
+#footer{
+	padding:30px;
+	border-top:2px solid #dddddd;
+	background-color:#eeeeee;
+	font-size:0.8em;
+	margin-top:50px;
+	clear:both;
+}
+.btn-form-display{
+	margin:7px;
+}
