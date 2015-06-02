@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv=" X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<title>Matzov Newsletter</title>
 
@@ -63,9 +63,8 @@
 							</li>	
 						</ul>
 						<button class="btn btn-primary btn-form-display">להגשת אייטמים למהדורה הבאה</button>
-						
-					<!-- n e w s form-->
 					</div>	
+					<hr class="resp-larg">
 				<!-- m a t z o v - f o r - m a t z o v   section-->
 					<div class="matzov-for-matzov col-md-6 section">
 						<h4>מצו"ב בשביל מצו"ב</h4>
@@ -84,69 +83,73 @@
 						<button class="btn btn-primary btn-form-display">להגשת אייטמים למהדורה הבאה</button>
 					</div>
 				<!-- requests -->
-					<div class="col-md-12 news-form form-container">
-						<form role="form" class="form-horizontal">
-							<h5>הגשת אייטם למהדורה הבאה</h5>
-							<hr>
-							<div class="form-group">
-								<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control"></input>
+					<div id="news-form" class="col-md-12">
+						<div class="form-container">
+							<form role="form" class="form-horizontal">
+								<h5>הגשת אייטם למהדורה הבאה</h5>
+								<hr>
+								<div class="form-group">
+									<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control"></input>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
-								<div class="col-sm-10">
-									<input type="email" class="form-control"></input>
+								<div class="form-group">
+									<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
+									<div class="col-sm-10">
+										<input type="email" class="form-control"></input>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="exerpt" class="control-label">בקיצור</label>
-								<textarea class="form-control" rows="2" placeholder="ספר/י בקצרה על הנושא"></textarea>
-								<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
-							</div>
-							<div class="form-group">
-								<label for="details" class="control-label">פרטים נוספים</label>
-								<textarea class="form-control" rows="4" placeholder="פרט/י"></textarea>
-								<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
-							</div>
-							<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
-							<button class="btn btn-default btn-cancel">בטל</button>
-						</form>
-					</div>			
-					<div class="col-md-12 matzov-for-matzov-form form-container">
-						<form role="form" class="form-horizontal">
-							<h5>הגשת בקשה למהדורה הבאה</h5>
-							<hr>
-							<div class="form-group">
-								<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control"></input>
+								<div class="form-group">
+									<label for="exerpt" class="control-label">בקיצור</label>
+									<textarea class="form-control" rows="2" placeholder="ספר/י בקצרה על הנושא"></textarea>
+									<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
-								<div class="col-sm-10">
-									<input type="email" class="form-control"></input>
+								<div class="form-group">
+									<label for="details" class="control-label">פרטים נוספים</label>
+									<textarea class="form-control" rows="4" placeholder="פרט/י"></textarea>
+									<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="exerpt" class="control-label">בקיצור</label>
-								<textarea class="form-control" rows="2" placeholder="ספר/י בקצרה על הנושא"></textarea>
-								<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
-							</div>
-							<div class="form-group">
-								<label for="details" class="control-label">פרטים נוספים</label>
-								<textarea class="form-control" rows="4" placeholder="פרט/י"></textarea>
-								<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
-							</div>
-							<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
-							<button class="btn btn-default btn-cancel">בטל</button>
-						</form>
+								<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
+								<button class="btn btn-default btn-cancel">בטל</button>
+							</form>
+						</div>
 					</div>
-				<!-- j o b s    section-->		
-					<div class="jobs col-md-12 section" dir="rtl">			
+					<div id="matzov-for-matzov-form" class="col-md-12">
+						<div class="form-container">
+							<form role="form" class="form-horizontal">
+								<h5>הגשת בקשה למהדורה הבאה</h5>
+								<hr>
+								<div class="form-group">
+									<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control"></input>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
+									<div class="col-sm-10">
+										<input type="email" class="form-control"></input>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="exerpt" class="control-label">בקיצור</label>
+									<textarea class="form-control" rows="2" placeholder="ספר/י בקצרה על הנושא"></textarea>
+									<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
+								</div>
+								<div class="form-group">
+									<label for="details" class="control-label">פרטים נוספים</label>
+									<textarea class="form-control" rows="4" placeholder="פרט/י"></textarea>
+									<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
+								</div>
+								<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
+								<button class="btn btn-default btn-cancel">בטל</button>
+							</form>
+						</div>
+					</div>		
 					<hr>
+				<!-- j o b s    section-->		
+					<div class="jobs col-md-12 section" dir="rtl">	
 						<h4>הצעות עבודה</h4>
 				<!-- j o b s    articles-->
 						<ul style="padding:0;margin-top:0">
@@ -159,35 +162,37 @@
 							
 				<!--j o b s form-->
 					</div>
-					<div class="jobs-form form-container col-md-12">
-						<form role="form" class="form-horizontal">
-							<h5>הגשת הצעת עבודה למהדורה הבאה</h5>
-							<hr>
-							<div class="form-group">
-								<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control"></input>
+					<div id="jobs-form" class="col-md-12">
+						<div class="form-container">
+							<form role="form" class="form-horizontal">
+								<h5>הגשת הצעת עבודה למהדורה הבאה</h5>
+								<hr>
+								<div class="form-group">
+									<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control"></input>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
-								<div class="col-sm-10">
-									<input type="email" class="form-control"></input>
+								<div class="form-group">
+									<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
+									<div class="col-sm-10">
+										<input type="email" class="form-control"></input>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label for="exerpt" class="control-label">בקיצור</label>
-								<textarea class="form-control" rows="2" placeholder="ספר/י בקצרה על הנושא"></textarea>
-								<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
-							</div>
-							<div class="form-group">
-								<label for="details" class="control-label">פרטים נוספים</label>
-								<textarea class="form-control" rows="4" placeholder="פרט/י"></textarea>
-								<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
-							</div>
-							<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
-							<button class="btn btn-default btn-cancel">בטל</button>
-						</form>
+								<div class="form-group">
+									<label for="exerpt" class="control-label">בקיצור</label>
+									<textarea class="form-control" rows="2" placeholder="ספר/י בקצרה על הנושא"></textarea>
+									<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
+								</div>
+								<div class="form-group">
+									<label for="details" class="control-label">פרטים נוספים</label>
+									<textarea class="form-control" rows="4" placeholder="פרט/י"></textarea>
+									<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
+								</div>
+								<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
+								<button class="btn btn-default btn-cancel">בטל</button>
+							</form>
+						</div>
 					</div>
 				</div>
 				
