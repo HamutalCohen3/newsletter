@@ -1,8 +1,10 @@
 $(document).ready(function(){
 	$(".form-container").hide();
+	resizeWindow();
 	
 });
-$(window).resize(function(){
+$(window).resize(resizeWindow);
+function resizeWindow(){
 	var isLarg = $("#news-form").parent().is(".news-l");
 	if ($(window).width() < 996 && isLarg){
 		console.log("change to small");
@@ -12,7 +14,7 @@ $(window).resize(function(){
 		console.log("change to large");
 		$("#news-form").appendTo(".news-l");
 	}
-});
+}
 $(".news .btn-form-display").click(function() {
 	$("#matzov-for-matzov-form .form-container").hide();
 	$("#news-form .form-container").show(300);
