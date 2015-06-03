@@ -24,11 +24,7 @@
 	border-bottom:1px solid #dddddd;
 	text-align:right;
 }
-.CToWUd{
-	margin-top:40px;
-	margin-bottom:40px;
-	clear:both;
-}
+
 .newsletter-title{
 	background-color:#6dc6dd;
 	clear:both;
@@ -82,14 +78,36 @@ h2{
 	margin:7px;
 }
 #news-form, #jobs-form, #matzov-for-matzov-form{
-	float:right;
 	clear:both;
+	margin-right:5px;
+	margin-left:5px;
+	padding-right:0px;
+	padding-left:0px;
+}
+#news-form .form-container, #jobs-form .form-container, #matzov-for-matzov-form .form-container{
+	margin-right:5px;
+	margin-left:5px;
+}
+.resp-small{
+	
 }
 .resp-larg{
-	display:none;
+	
 }
-@media (max-width: 1000px) {
-	.resp-larg{
-		display:block;
+@media (min-width: 996px) {
+	.resp-small{
+		display:none;
 	}
+}
+@media (max-width: 995px) {
+	.resp-larg{
+		display:none;
+	}
+}
+
+img {
+	max-width: 100%;
+	margin-bottom:40px;
+	margin-top:40px;
+	clear:both;
 }
