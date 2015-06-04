@@ -59,9 +59,18 @@
 						<li>__ ____ ____
 							___ ____ ______ _____ ________ _________
 							____ ___ ____ ___<a href="#">לפרטים נוספים</a>
+						</li>
+						<li><a href=#> לפרטים נוספים</a>
+						<br>
+						<a href="#"></a>
+						<p class="more"></p>
 						</li>	
 					</ul>
-					<button class="btn btn-primary btn-form-display">להגשת אייטמים למהדורה הבאה</button>						
+					<button class="btn btn-primary btn-form-display">להגשת אייטמים למהדורה הבאה</button>
+					<div class='btn-group'>
+						<button class='btn btn-primary btn-change'>שנה</button>
+						<button class='btn btn-success btn-send'>שלח</button>
+					</div>
 				</div>	
 				<div class="news-s"></div>
 				<hr class="resp-small">
@@ -79,8 +88,17 @@
 							___ ____ ______ _____ ________ _________
 							____ ___ ____ ___<a href="#">לפרטים נוספים</a>
 						</li>	
+						<li><a href=#> לפרטים נוספים</a>
+						<br>
+						<a href="#"></a>
+						<p class="more"></p>
+						</li>
 					</ul>
 					<button class="btn btn-primary btn-form-display">להגשת בקשות למהדורה הבאה</button>
+					<div class='btn-group'>
+						<button class='btn btn-primary btn-change'>שנה</button>
+						<button class='btn btn-success btn-send'>שלח</button>
+					</div>
 				</div>
 			<!-- requests -->
 				<div class="news-l">
@@ -91,25 +109,25 @@
 								<hr>
 								<div class="form-group">
 									<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control name"></input>
+									<div class="col-sm-5">
+										<input type="text" class="form-control name" maxlength="30" name="name" ></input>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
-									<div class="col-sm-10">
-										<input type="email" class="form-control email"></input>
+									<div class="col-sm-5">
+										<input type="email" class="form-control email" maxlength="30" name="email"></input>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="exerpt" class="control-label">בקיצור</label>
-									<textarea class="form-control summery" rows="2" placeholder="ספר/י בקצרה על הנושא"></textarea>
+									<textarea class="form-control summery" rows="2" placeholder="ספר/י בקצרה על הנושא" name="summery"></textarea>
 									<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
 								</div>
 								<div class="form-group">
 									<label for="details" class="control-label">פרטים נוספים</label>
-									<textarea class="form-control" rows="4" placeholder="פרט/י"></textarea>
-									<span class="help-block more">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
+									<textarea class="form-control more" rows="4" placeholder="פרט/י" name="more"></textarea>
+									<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
 								</div>
 								<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
 								<button class="btn btn-default btn-cancel">בטל</button>
@@ -124,24 +142,24 @@
 							<hr>
 							<div class="form-group">
 								<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control name"></input>
+								<div class="col-sm-5">
+									<input type="text" class="form-control name" maxlength="30" name="name"></input>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
-								<div class="col-sm-10">
-									<input type="email" class="form-control email"></input>
+								<div class="col-sm-5">
+									<input type="email" class="form-control email" maxlength="30" name="email"></input>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="exerpt" class="control-label">בקיצור</label>
-								<textarea class="form-control summery" rows="2" placeholder="ספר/י בקצרה על הנושא"></textarea>
+								<textarea class="form-control summery" rows="2" placeholder="ספר/י בקצרה על הנושא" name="summery"></textarea>
 								<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
 							</div>
 							<div class="form-group">
 								<label for="details" class="control-label">פרטים נוספים</label>
-								<textarea class="form-control more" rows="4" placeholder="פרט/י"></textarea>
+								<textarea class="form-control more" rows="4" placeholder="פרט/י" name="more"></textarea>
 								<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
 							</div>
 							<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
@@ -151,16 +169,25 @@
 				</div>
 				<hr>
 			<!-- j o b s    section-->		
-				<div class="jobs col-md-12 section" dir="rtl">	
+				<div class="jobs col-md-12 col-sm-12 section">	
 					<h4>הצעות עבודה</h4>
 			<!-- j o b s    articles-->
 					<ul style="padding:0;margin-top:0">
 						<li style="margin-bottom:10px">_____ __ __ _____ ___ __ ___ ___ _____ __ ___ ______ ____ ___ __ ____ ____ ____<a href="#">לפרטים נוספים</a>
 						 </li>
 						<li style="margin-bottom:10px">___ ___ ____ ___ ___ ______ __ ___ ___ _____ ____ ___ ___ ______ __ _____ ___ ___ ____ ____ ___  ____ ____ ___ ____ __ ___ ___ _____ __ ___ ______ ____ ___ _____ ____ ___ ____ _____ __ ____ __<a href="#">לפרטים נוספים</a>
+						</li>
+						<li><a href=#> לפרטים נוספים</a>
+						<br>
+						<a href="#"></a>
+						<p class="more"></p>
 						</li>	
 					</ul>
 					<button class="btn btn-primary btn-form-display">להגשת הצעות עבודה למהדורה הבאה</button>
+					<div class='btn-group'>
+						<button class='btn btn-primary btn-change'>שנה</button>
+						<button class='btn btn-success btn-send'>שלח</button>
+					</div>
 				</div>		
 			<!--j o b s form-->
 				<div id="jobs-form" class="col-md-12">
@@ -170,24 +197,24 @@
 							<hr>
 							<div class="form-group">
 								<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control name"></input>
+								<div class="col-sm-5">
+									<input type="text" class="form-control name" maxlength="30" name="name"></input>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
-								<div class="col-sm-10">
-									<input type="email" class="form-control email"></input>
+								<label for="email" class="control-label col-sm-2" style="float:right" maxlength="30">דוא"ל</label>
+								<div class="col-sm-5">
+									<input type="email" class="form-control email" name="email"></input>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="exerpt" class="control-label">בקיצור</label>
-								<textarea class="form-control summery" rows="2" placeholder="ספר/י בקצרה על הנושא"></textarea>
+								<textarea class="form-control summery" rows="2" placeholder="ספר/י בקצרה על הנושא" name="summery"></textarea>
 								<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
 							</div>
 							<div class="form-group">
 								<label for="details" class="control-label">פרטים נוספים</label>
-								<textarea class="form-control more" rows="4" placeholder="פרט/י"></textarea>
+								<textarea class="form-control more" rows="4" placeholder="פרט/י" name="more"></textarea>
 								<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
 							</div>
 							<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>

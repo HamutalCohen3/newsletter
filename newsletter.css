@@ -75,7 +75,8 @@ h2{
 	clear:both;
 }
 .btn-form-display{
-	margin:7px;
+	margin-top:7px;
+	margin-bottom:7px;
 }
 #news-form, #jobs-form, #matzov-for-matzov-form{
 	clear:both;
@@ -94,12 +95,12 @@ h2{
 .resp-larg{
 	
 }
-@media (min-width: 996px) {
+@media (min-width: 992px) {
 	.resp-small{
 		display:none;
 	}
 }
-@media (max-width: 995px) {
+@media (max-width: 991px) {
 	.resp-larg{
 		display:none;
 	}
@@ -110,4 +111,17 @@ img {
 	margin-bottom:40px;
 	margin-top:40px;
 	clear:both;
+}
+.control-label{
+	padding:6px;
+}
+.form-container .form-group div{
+	float:right;
+}
+.more{
+	border:1px solid #eeeeee;
+	border-radius:3px;
+	padding:10px;
+	margin-top:5px;
+	margin-bottom:5px;
 }
