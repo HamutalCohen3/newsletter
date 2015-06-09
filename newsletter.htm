@@ -8,7 +8,7 @@
 		<title>Matzov Newsletter</title>
 
 		<!-- Bootstrap -->
-		<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="newsletter.css" rel="stylesheet"> 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,10 +18,8 @@
 		<![endif]-->
 		
 		
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
+<!-- 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+ -->
 	</head>
 	<body class="body">
 		<div dir="rtl">
@@ -47,7 +45,7 @@
 			<div class="col-md-8 col-md-offset-2" id="newsletter-container">
 			<!-- news + matzov -->
 				<!-- n e w s   section-->
-				<div class="news col-md-6 col-ms-12 section">
+				<div class="section news col-md-6 col-sm-12">
 					<h4 style="">חדשות ועידכונים</h4>
 				<!-- n e w s   articles-->
 					<ul style="padding:0;margin-top:0px">
@@ -60,22 +58,22 @@
 							___ ____ ______ _____ ________ _________
 							____ ___ ____ ___<a href="#">לפרטים נוספים</a>
 						</li>
-						<li><a href=#> לפרטים נוספים</a>
-						<br>
-						<a href="#"></a>
-						<p class="more"></p>
+						<li>
+							<div class="article">
+							<!-- article -->
+							</div>
+							<div class='btn-group'>
+								<button class='btn btn-primary btn-change'>שנה</button>
+								<button class='btn btn-success btn-send'>שלח</button>
+							</div>
 						</li>	
 					</ul>
 					<button class="btn btn-primary btn-form-display">להגשת אייטמים למהדורה הבאה</button>
-					<div class='btn-group'>
-						<button class='btn btn-primary btn-change'>שנה</button>
-						<button class='btn btn-success btn-send'>שלח</button>
-					</div>
 				</div>	
 				<div class="news-s"></div>
 				<hr class="resp-small">
 			<!-- m a t z o v - f o r - m a t z o v   section-->
-				<div class="matzov-for-matzov col-md-6 col-sm-12 section">
+				<div class="section matzov-for-matzov col-md-6 col-sm-12">
 					<h4>מצו"ב בשביל מצו"ב</h4>
 			<!-- m a t z o v - f o r - m a t z o v   articles-->
 					<ul style="padding:0;margin-top:0px">
@@ -88,139 +86,54 @@
 							___ ____ ______ _____ ________ _________
 							____ ___ ____ ___<a href="#">לפרטים נוספים</a>
 						</li>	
-						<li><a href=#> לפרטים נוספים</a>
-						<br>
-						<a href="#"></a>
-						<p class="more"></p>
+						<li>
+							<div class="article">
+							<!-- article -->
+							</div>
+							<div class='btn-group'>
+								<button class='btn btn-primary btn-change'>שנה</button>
+								<button class='btn btn-success btn-send'>שלח</button>
+							</div>
 						</li>
 					</ul>
 					<button class="btn btn-primary btn-form-display">להגשת בקשות למהדורה הבאה</button>
-					<div class='btn-group'>
-						<button class='btn btn-primary btn-change'>שנה</button>
-						<button class='btn btn-success btn-send'>שלח</button>
-					</div>
 				</div>
 			<!-- requests -->
 				<div class="news-l">
-					<div class="col-md-12" id="news-form">
-						<div class="form-container">
-							<form role="form" class="form-horizontal">
-								<h5>הגשת אייטם למהדורה הבאה</h5>
-								<hr>
-								<div class="form-group">
-									<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
-									<div class="col-sm-5">
-										<input type="text" class="form-control name" maxlength="30" name="name" ></input>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
-									<div class="col-sm-5">
-										<input type="email" class="form-control email" maxlength="30" name="email"></input>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="exerpt" class="control-label">בקיצור</label>
-									<textarea class="form-control summery" rows="2" placeholder="ספר/י בקצרה על הנושא" name="summery"></textarea>
-									<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
-								</div>
-								<div class="form-group">
-									<label for="details" class="control-label">פרטים נוספים</label>
-									<textarea class="form-control more" rows="4" placeholder="פרט/י" name="more"></textarea>
-									<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
-								</div>
-								<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
-								<button class="btn btn-default btn-cancel">בטל</button>
-							</form>
-						</div>
+					<div class="form-container news col-md-12">
 					</div>
 				</div>
-				<div class="col-md-12" id="matzov-for-matzov-form">
-					<div class="form-container">
-						<form role="form" class="form-horizontal">
-							<h5>הגשת בקשה למהדורה הבאה</h5>
-							<hr>
-							<div class="form-group">
-								<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control name" maxlength="30" name="name"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
-								<div class="col-sm-5">
-									<input type="email" class="form-control email" maxlength="30" name="email"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="exerpt" class="control-label">בקיצור</label>
-								<textarea class="form-control summery" rows="2" placeholder="ספר/י בקצרה על הנושא" name="summery"></textarea>
-								<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
-							</div>
-							<div class="form-group">
-								<label for="details" class="control-label">פרטים נוספים</label>
-								<textarea class="form-control more" rows="4" placeholder="פרט/י" name="more"></textarea>
-								<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
-							</div>
-							<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
-							<button class="btn btn-default btn-cancel">בטל</button>
-						</form>
-					</div>
+				<div class="form-container matzov-for-matzov col-md-12">
 				</div>
 				<hr>
 			<!-- j o b s    section-->		
-				<div class="jobs col-md-12 col-sm-12 section">	
+				<div class="section jobs col-md-12 col-sm-12">	
 					<h4>הצעות עבודה</h4>
 			<!-- j o b s    articles-->
 					<ul style="padding:0;margin-top:0">
-						<li style="margin-bottom:10px">_____ __ __ _____ ___ __ ___ ___ _____ __ ___ ______ ____ ___ __ ____ ____ ____<a href="#">לפרטים נוספים</a>
+						<li style="margin-bottom:10px">_____ __ __ _____ ___ __ ___ ___ _____
+						__ ___ ______ ____ ___ __ ____ ____ ____<a href="#">לפרטים נוספים</a>
 						 </li>
-						<li style="margin-bottom:10px">___ ___ ____ ___ ___ ______ __ ___ ___ _____ ____ ___ ___ ______ __ _____ ___ ___ ____ ____ ___  ____ ____ ___ ____ __ ___ ___ _____ __ ___ ______ ____ ___ _____ ____ ___ ____ _____ __ ____ __<a href="#">לפרטים נוספים</a>
+						<li style="margin-bottom:10px">___ ___ ____ ___ ___ ______ __ ___ ___ _____ 
+						____ ___ ___ ______ __ _____ ___ ___ ____ ____ ___  ____ ____ ___ ____ __ ___
+						___ _____ __ ___ ______ ____ ___ _____ ____ ___
+						____ _____ __ ____ __<a href="#">לפרטים נוספים</a>
 						</li>
-						<li><a href=#> לפרטים נוספים</a>
-						<br>
-						<a href="#"></a>
-						<p class="more"></p>
+						<li>
+							<div class="article">
+							<!-- article -->
+							</div>
+							<div class='btn-group'>
+								<button class='btn btn-primary btn-change'>שנה</button>
+								<button class='btn btn-success btn-send'>שלח</button>
+							</div>
 						</li>	
 					</ul>
 					<button class="btn btn-primary btn-form-display">להגשת הצעות עבודה למהדורה הבאה</button>
-					<div class='btn-group'>
-						<button class='btn btn-primary btn-change'>שנה</button>
-						<button class='btn btn-success btn-send'>שלח</button>
-					</div>
 				</div>		
 			<!--j o b s form-->
-				<div id="jobs-form" class="col-md-12">
-					<div class="form-container">
-						<form role="form" class="form-horizontal">
-							<h5>הגשת הצעת עבודה למהדורה הבאה</h5>
-							<hr>
-							<div class="form-group">
-								<label for="name" class="control-label col-sm-2" style="float:right">שם</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control name" maxlength="30" name="name"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="email" class="control-label col-sm-2" style="float:right" maxlength="30">דוא"ל</label>
-								<div class="col-sm-5">
-									<input type="email" class="form-control email" name="email"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="exerpt" class="control-label">בקיצור</label>
-								<textarea class="form-control summery" rows="2" placeholder="ספר/י בקצרה על הנושא" name="summery"></textarea>
-								<span class="help-block">חלק זה יופיע במייל התפוצה של העיתון.</span>
-							</div>
-							<div class="form-group">
-								<label for="details" class="control-label">פרטים נוספים</label>
-								<textarea class="form-control more" rows="4" placeholder="פרט/י" name="more"></textarea>
-								<span class="help-block">חלק זה יופיע למתעניינים שילחצו "לפרטים נוספים".</span>
-							</div>
-							<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
-							<button class="btn btn-default btn-cancel">בטל</button>
-						</form>
-					</div>
+				<div class="form-container jobs col-md-12">
+				<!-- form -->
 				</div>
 				<div class="form-review col-md-12">
 					
@@ -261,19 +174,20 @@
 				
 				
 		 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<!--     <script src="jquery.js"></script>
- -->    <!-- Include all compiled plugins (below), or include individual files as needed -->
-<!--     <script src="js/bootstrap.min.js"></script>
- -->	
+    <script src="jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+ 	
 	<script src="newsletter.js"></script>
+	<script src="jquery-form-validation/dist/jquery.validate.min.js"></script>
 	
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<!-- Latest compiled and minified CSS --><!-- 
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
 
 	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 
 	<!-- Latest compiled JavaScript -->
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
 	</body>
 </html>	

@@ -78,16 +78,19 @@ h2{
 	margin-top:7px;
 	margin-bottom:7px;
 }
-#news-form, #jobs-form, #matzov-for-matzov-form{
+/*#news-form, #jobs-form, #matzov-for-matzov-form{
 	clear:both;
 	margin-right:5px;
 	margin-left:5px;
 	padding-right:0px;
 	padding-left:0px;
-}
-#news-form .form-container, #jobs-form .form-container, #matzov-for-matzov-form .form-container{
+}*/
+.form-container{
 	margin-right:5px;
 	margin-left:5px;
+	padding:20px;
+}
+.form-container form{
 }
 .resp-small{
 	
@@ -118,10 +121,29 @@ img {
 .form-container .form-group div{
 	float:right;
 }
-.more{
+.form-container label{
+	float:right;
+}
+.form-container label input{
+	margin: 0px 9px;
+}
+.form-container .help-block{
+	margin: 0px 9px;
+	float:right;
+	clear:both;
+}
+p.more{
 	border:1px solid #eeeeee;
 	border-radius:3px;
 	padding:10px;
 	margin-top:5px;
 	margin-bottom:5px;
+	clear:both;
+}
+li:last-child .btn-group{
+	margin:8px;
+}
+label.error{
+	color:red;
+	margin-right:30px;
 }
