@@ -9,10 +9,7 @@
 .control-label{
 	float:right;
 }
-.form-container{
-	padding:12px;
-	margin:17px;
-}
+
 
 .header{
 	background-color:#eeeeee;
@@ -42,6 +39,13 @@
 	border-radius:8px;
 	padding:15px;
 	clear:both;
+	padding:0px;
+	margin:17px;
+}
+.form-container .nav-tabs{
+	padding-left:30px;
+	padding-top:12px;
+	background-color:#ddd;
 }
 .form-container form{
 	padding:17px;
@@ -85,13 +89,7 @@ h2{
 	padding-right:0px;
 	padding-left:0px;
 }*/
-.form-container{
-	margin-right:5px;
-	margin-left:5px;
-	padding:20px;
-}
-.form-container form{
-}
+
 .resp-small{
 	
 }
@@ -132,6 +130,10 @@ img {
 	float:right;
 	clear:both;
 }
+.form-container form{
+	padding:30px;
+	margin:20px 40px;
+}
 p.more{
 	border:1px solid #eeeeee;
 	border-radius:3px;
@@ -146,4 +148,10 @@ li:last-child .btn-group{
 label.error{
 	color:red;
 	margin-right:30px;
+}
+.nav-tabs>li.active>a:link, .nav-tabs>li.active>a:visited{
+	background-color: #fafafa;
+}
+.nav-tabs>li.active>a:hover{
+	background-color: #fafafa;
 }

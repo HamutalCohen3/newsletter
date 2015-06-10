@@ -29,7 +29,7 @@ $(document).ready(function(){
 					email: true
 				},
 				more: {
-					maxlength:1000
+					maxlength:10000
 				},
 				title: {
 					required: true
@@ -71,7 +71,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	$("li:last-child").hide();
+	$(".section li:last-child").hide();
 });
 var layoutBreakpoint = 992;
 $(window).resize(setNewsFormPosition);
@@ -168,11 +168,14 @@ $(".form-container").on("click", ".btn-review", function(){
 		
 	//put common values in form
 	$(section).find(".summary").append(summary);
+	$(section).find(".summary").linkify();
 	$(section).find(".name").append(name);
 	if(phoneNumber != ""){$(section).find(".phone").append().append(phoneNumber);}
 	$(section).find(".email").append().append(email);
+	$(section).find(".email").linkify();
 	if(more != ""){
 		$(section).find("p.more").append(more);
+		$(section).find("p.more").linkify();
 	}
 	else{
 		$(section).find(".toggle-more").hide();
@@ -232,7 +235,7 @@ var basicForm = '<form role="form" class="form-horizontal"><h5></h5>\
 					<div class="form-group">\
 						<label for="more" class="control-label">פרטים נוספים</label>\
 						<textarea class="form-control" rows="7" placeholder="פרט/י" name="more"></textarea>\
-						<span class="help-block">שדה זה יופיע למתעניינים שילחצו "לפרטים נוספים" (רשות)</span>\
+						<span class="help-block">שדה זה יופיע למתעניינים שילחצו "לפרטים נוספים", ניתן להכניס טקסט או קישור (רשות)</span>\
 					</div>\
 					<div class="form-group">\
 						<label for="remarks" class="control-label">הערות לעורך</label>\
@@ -252,13 +255,14 @@ function createBasicArticle(section){
 	//put unique values in article
 	if(!displayContact){
 		$(section).find(".name").hide();
+		$(section).find(".phone").hide();
 	}
 }
 var basicArticle = '<span class="summary"></span>\
 	<a href=# class="toggle-more"> לפרטים נוספים </a>\
 	<br><span class="name"></span>\
 	<span class="phone"> </span>\
-	<a href="#"><span class="email"> </span></a>\
+	<span class="email"> </span>\
 	<p class="more"></p>'
 var contactDisplayCheckbox = '<div class="form-group">\
 								<label><input type="checkbox" name="display-contact" checked>הצג איש קשר</label>\
@@ -302,7 +306,7 @@ var jobsArticle = '<span class="name"></span>\
 	<span class="summary"> </span>\
 	<a href=# class="toggle-more"> לפרטים נוספים</a>\
 	<br>\
-	<a href="#"><span class="email"> </span></a>\
+	<span class="email"> </span>\
 	<span class="phone"> </span>\
 	<p class="more"></p>'
 function createNewsForm(){
@@ -310,13 +314,26 @@ function createNewsForm(){
 	formToNewsOrMatzov($(".news.form-container"));
 	$(".news.form-container h5").append("הגשת כתבה למהדורה הבאה");
 }
+var formTabs = '<ul class="nav nav-tabs">\
+				  <li role="presentation" class="active"><a href="#">הגשת בקשה</a></li>\
+				  <li role="presentation"><a href="#">בוגר החודש</a></li>\
+				</ul>';
 function createMatzovForm(){
-	$(".matzov-for-matzov.form-container").append(basicForm);
+	$(".matzov-for-matzov.form-container").prepend(basicForm);
+	$(".matzov-for-matzov.form-container").prepend(formTabs);
 	formToNewsOrMatzov($(".matzov-for-matzov.form-container"));
 	$(".matzov-for-matzov.form-container h5").append("הגשת בקשה למהדורה הבאה");
 }
 function createJobsForm(){
 	$(".jobs.form-container").append(basicForm);
 	formToJobs($(".jobs.form-container"));
-	$(".jobs.form-container h5").append("הצעת עבודה למהדורה הבאה");
+	$(".jobs.form-container h5").append("הגשת הצעת עבודה למהדורה הבאה");
 }
+$(".matzov-for-matzov.form-container").on("click", ".nav-tabs a", function(){
+	var i = $(this).parent().index();
+	$(".matzov-for-matzov.form-container form").hide();
+	$(".matzov-for-matzov.form-container form").eq(i).show();
+	$(".matzov-for-matzov.form-container .nav-tabs li").removeClass("active");
+	$(this).parents("li").addClass("active");
+	return false;
+})
