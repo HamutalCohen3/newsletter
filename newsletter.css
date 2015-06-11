@@ -47,9 +47,7 @@
 	padding-top:12px;
 	background-color:#ddd;
 }
-.form-container form{
-	padding:17px;
-}
+
 form h5{
 	font-size:1.2em;
 	text-align:center;
@@ -155,3 +153,6 @@ label.error{
 .nav-tabs>li.active>a:hover{
 	background-color: #fafafa;
 }
+
+
+

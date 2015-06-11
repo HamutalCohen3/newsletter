@@ -1,3 +1,29 @@
+function postToGoogle() {
+ 
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/1s8BrnXqe7TdypYTHBhbuecjLbIslyDrwno2YNfI_OHM/formResponse",
+                    data: {"entry.2": summary, "entry.3": name, "entry.4": email},
+                    type: "POST",
+					crossDomain: true,
+                    dataType: "xml",
+                    statusCode: {
+                        0: function() {
+                            alert("success!");
+                        },
+                        200: function() {
+                            alert("success!");
+                        }
+                    }
+                });
+            }
+             
+            $(document).ready(function(){
+                $('.btn-send').click(function() {
+                    postToGoogle();
+                    return false;
+                });
+            });
+
 $(document).ready(function(){
 	$(".form-container").hide();
 	createNewsForm($(".news.form-container"));
