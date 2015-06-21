@@ -20,6 +20,13 @@
 		
 <!-- 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
  -->
+		<!-- Place inside the <head> of your HTML -->
+		<script type="text/javascript" src="tinymce/js/tinymce/tinymce.min.js"></script>
+		<!-- <script type="text/javascript">
+		tinymce.init({
+			selector: "textarea.summary, textarea.more"
+		 });
+		</script> -->
 	</head>
 	<body class="body">
 		<div dir="rtl">
@@ -64,7 +71,7 @@
 							</div>
 							<div class='btn-group'>
 								<button class='btn btn-primary btn-change'>שנה</button>
-								<button class='btn btn-success btn-send'>שלח</button>
+								<button class='btn btn-success btn-send' name="submit">שלח</button>
 							</div>
 						</li>	
 					</ul>
@@ -92,7 +99,7 @@
 							</div>
 							<div class='btn-group'>
 								<button class='btn btn-primary btn-change'>שנה</button>
-								<button class='btn btn-success btn-send'>שלח</button>
+								<button class='btn btn-success btn-send' name="submit">שלח</button>
 							</div>
 						</li>
 					</ul>
@@ -101,10 +108,57 @@
 			<!-- requests -->
 				<div class="news-l">
 					<div class="form-container news col-md-12">
+						<form role="form" class="form-horizontal" action="https://docs.google.com/forms/d/1s8BrnXqe7TdypYTHBhbuecjLbIslyDrwno2YNfI_OHM/formResponse?embedded=true" method="POST">
+						<h5></h5>
+							<hr>
+							<div class="form-group"> 
+								<label for="summary" class="control-label">בקיצור</label>
+								<textarea class="form-control summary" rows="5" placeholder=" ספר/י בקצרה על הנושא (בעברית)" name="entry.1593542857"></textarea>
+								<span class="help-block">שדה זה יופיע במייל התפוצה של הניוזלטר.</span>
+							</div>
+							<div class="form-group">
+								<label for="name" class="control-label col-sm-2" style="float:right">איש קשר</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control name" name="entry.1415989532"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="phone" class="control-label col-sm-2" style="float:right">מספר טלפון</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control phone" name="entry.1144585106"></input>
+									<span class="help-block">טלפון איש קשר (רשות)</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
+								<div class="col-sm-5">
+									<input type="email" class="form-control email" name="entry.1743980726"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="more" class="control-label">פרטים נוספים</label>
+								<textarea class="form-control more" rows="7" placeholder="פרט/י" name="entry.1365421559"></textarea>
+								<span class="help-block">שדה זה יופיע למתעניינים שילחצו "לפרטים נוספים", ניתן להכניס טקסט או קישור (רשות)</span>
+							</div>
+							<div class="form-group">
+								<label for="remarks" class="control-label">הערות לעורך</label>
+								<textarea class="form-control remarks" rows="3" placeholder="עוד משהו שתרצה/י להוסיף?" name="entry.1017349982"></textarea>
+								<span class="help-block">שדה זה ישלח לעורך בלבד</span>
+							</div>
+							<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
+							<button class="btn btn-default btn-cancel">בטל</button>
+							<!-- part of google forms -->
+							<input type="hidden" name="draftResponse" value="[,,&quot;-8417536324509269873&quot;]">
+							<input type="hidden" name="pageHistory" value="0">
+							<input type="hidden" name="fbzx" value="-8417536324509269873">
+							<button name="submit" style="display:none">שלח</button>
+						</form>
 					</div>
 				</div>
 				<div class="form-container matzov-for-matzov col-md-12">
 					<form class="spotlight" style="display:none">
+						<h5>הצעת מועמד לבוגר החודש</h5>
+						<hr>
 					</form>
 				</div>
 				<hr>
@@ -137,10 +191,6 @@
 				<div class="form-container jobs col-md-12">
 				<!-- form -->
 				</div>
-				<div class="form-review col-md-12">
-					
-				
-				</div>
 			</div>
 			<!--footer-->
 			<div id="footer" class="col-md-12">
@@ -166,8 +216,7 @@
 					<br>
 					<br>
 					<a href="http://www.mailchimp.com/monkey-rewards/?utm_source=freemium_newsletter&amp;utm_medium=email&amp;utm_campaign=monkey_rewards&amp;aid=1a40591115e4e6ba8225c2cfb&amp;afl=1" target="_blank">
-					<img src="https://ci5.googleusercontent.com/proxy/oCj6URbrdRxWlnMteh_uAHxvVX0zzgiIs7fpdDeW7FjqMSwDeSlq96WNgFN0XlhcFSZprmnU5SmMolV9MYHf-xzLvp8aLykjcNuWeX1jSJrWGfHQqoRk_WtHYsflxsg=s0-d-e1-ft#http://gallery.mailchimp.com/089443193dd93823f3fed78b4/images/banner1.gif"
-						border="0" alt="Email Marketing Powered by MailChimp" title="MailChimp Email Marketing"></a>
+					<img src="https://ci5.googleusercontent.com/proxy/oCj6URbrdRxWlnMteh_uAHxvVX0zzgiIs7fpdDeW7FjqMSwDeSlq96WNgFN0XlhcFSZprmnU5SmMolV9MYHf-xzLvp8aLykjcNuWeX1jSJrWGfHQqoRk_WtHYsflxsg=s0-d-e1-ft#http://gallery.mailchimp.com/089443193dd93823f3fed78b4/images/banner1.gif" border="0" alt="Email Marketing Powered by MailChimp" title="MailChimp Email Marketing"></a>
 				</div>
 			</div>
 			</center>

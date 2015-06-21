@@ -114,7 +114,7 @@ img {
 .control-label{
 	padding:6px;
 }
-.form-container .form-group div{
+.form-container .form-group div.col-sm-5{
 	float:right;
 }
 .form-container label{

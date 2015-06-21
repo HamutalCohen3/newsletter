@@ -1,14 +1,16 @@
-function postToGoogle() {
+/* function postToGoogle() {
  
                 $.ajax({
-                    url: "https://docs.google.com/forms/d/1s8BrnXqe7TdypYTHBhbuecjLbIslyDrwno2YNfI_OHM/formResponse",
+                    url: "https://docs.google.com/a/hamutalcohen3.github.io/forms/d/1s8BrnXqe7TdypYTHBhbuecjLbIslyDrwno2YNfI_OHM/formResponse",
+					//https://docs.google.com/a/SOMEDOMAIN.com/forms/d/XXXXXXX/formResponse
+					//url: "https://docs.google.com/yourFormURL/formResponse",
                     data: {"entry.2": summary, "entry.3": name, "entry.4": email},
                     type: "POST",
 					crossDomain: true,
                     dataType: "xml",
                     statusCode: {
                         0: function() {
-                            alert("success!");
+                            alert("failed :(");
                         },
                         200: function() {
                             alert("success!");
@@ -22,75 +24,90 @@ function postToGoogle() {
                     postToGoogle();
                     return false;
                 });
-            });
+            }); */
 
 $(document).ready(function(){
 	$(".form-container").hide();
 	createNewsForm($(".news.form-container"));
 	createMatzovForm($(".matzov-for-matzov.form-container"));
+	console.log($(".matzov-for-matzov.form-container").html());
 	createJobsForm($(".jobs.form-container"));
 	setNewsFormPosition();
 	//validate
 	$("form").each(function(){
 		$(this).validate({
 			rules: {
-				summary: {
+				//summary
+				'entry.1593542857': {
 					required: true,
 					minlength: 30, 
 					maxlength: 600
 				},
-				name: {
+				//name
+				"entry.1415989532": {
 					required: true,
 					minlength: 2,
 					maxlength: 50
 				},
-				phone: {
+				//phone
+				"entry.1144585106": {
 					required: false,
 					minlength: 7,
 					maxlength: 10,
 					number:true
 				},
-				email: {
+				//email
+				"entry.1743980726": {
 					required: true,
 					email: true
 				},
-				more: {
+				//more
+				"entry.1365421559": {
 					maxlength:10000
 				},
-				title: {
+				//title
+				"entry.1629897663": {
 					required: true
 				},
-				company: {
+				//company
+				"entry.25675530": {
 					required: true
 				}
 			},
 			messages: {
-				summary: {
+				//summary
+				'entry.1593542857': {
 					required: "שדה חובה",
 					minlength: "מלא/י לפחות 30 תווים", 
 					maxlength: "עד 600 תווים, הוסף/י את השאר בפרטים נוספים"
 				},
-				name: {
+				//name
+				"entry.1415989532": {
 					required: "הכנס/י שם איש קשר",
 					minlength: "מלא/י לפחות 2 תווים", 
 					maxlength: "עד 50 תווים"
 				},
-				phone: {
+				//phone
+				"entry.1144585106": {
 					minlength: "בין 7 ל10 ספרות",
 					maxlength: "בין 7 ל10 ספרות",
 					number:"אנא הכנס/י רק ספרות בין 0 ל9"
 				},
-				email: {
+				//email
+				"entry.1743980726": {
 					required: "שדה חובה",
 					email: "אנא הכנס/י כתובת אימייל תקינה"
 				},
-				more: {
+				//more
+				"entry.1365421559": {
 					maxlength: "עד 1000 תווים"
 				},
-				title: {
+				//title
+				"entry.1629897663": {
 					required: "אנא מלא/י שם תפקיד"
 				},
-				company: {
+				//company
+				"entry.25675530": {
 					required: "אנא מלא/י שם חברה"
 				}
 			}
@@ -98,6 +115,11 @@ $(document).ready(function(){
 	});
 	
 	$(".section li:last-child").hide();
+});
+$('.btn-send').click(function() {
+	var form = getForm($(this).parents(".section"));
+	$(form).find("[name=submit]").click();
+	return false;
 });
 var layoutBreakpoint = 992;
 $(window).resize(setNewsFormPosition);
@@ -182,11 +204,11 @@ $(".form-container").on("click", ".btn-review", function(){
 	var form = $(this).parents(".form-container");
 	
 	//take common values from form
-	summary = $(form).find("[name=summary]").val().toString();
-	name = $(form).find("[name=name]").val().toString();
-	phoneNumber = $(form).find("[name=phone]").val().toString();
-	email = $(form).find("[name=email]").val().toString();
-	more = $(form).find("[name=more]").val().toString();
+	summary = $(form).find(".summary").val().toString();
+	name = $(form).find(".name").val().toString();
+	phoneNumber = $(form).find(".phone").val().toString();
+	email = $(form).find(".email").val().toString();
+	more = $(form).find(".more").val().toString();
 	
 	//take and put unique values separately
 	$(section).hasClass("jobs")?  
@@ -232,50 +254,12 @@ $("#newsletter-container").on("click", ".toggle-more", function(){
 	$(this).parents("li").find(".more").toggle(200);
 	return false;
 })
-var basicForm = '<form role="form" class="form-horizontal"><h5></h5>\
-					<hr>\
-					<div class="form-group"> \
-						<label for="summary" class="control-label">בקיצור</label>\
-						<textarea class="form-control" rows="5" placeholder=" ספר/י בקצרה על הנושא (בעברית)" name="summary"></textarea>\
-						<span class="help-block">שדה זה יופיע במייל התפוצה של העיתון.</span>\
-					</div>\
-					<div class="form-group">\
-						<label for="name" class="control-label col-sm-2" style="float:right">איש קשר</label>\
-						<div class="col-sm-5">\
-							<input type="text" class="form-control" name="name"></input>\
-						</div>\
-					</div>\
-					<div class="form-group">\
-						<label for="phone" class="control-label col-sm-2" style="float:right">מספר טלפון</label>\
-						<div class="col-sm-5">\
-							<input type="text" class="form-control" name="phone"></input>\
-							<span class="help-block">טלפון איש קשר (רשות)</span>\
-						</div>\
-					</div>\
-					<div class="form-group">\
-						<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>\
-						<div class="col-sm-5">\
-							<input type="email" class="form-control" name="email"></input>\
-						</div>\
-					</div>\
-					<div class="form-group">\
-						<label for="more" class="control-label">פרטים נוספים</label>\
-						<textarea class="form-control" rows="7" placeholder="פרט/י" name="more"></textarea>\
-						<span class="help-block">שדה זה יופיע למתעניינים שילחצו "לפרטים נוספים", ניתן להכניס טקסט או קישור (רשות)</span>\
-					</div>\
-					<div class="form-group">\
-						<label for="remarks" class="control-label">הערות לעורך</label>\
-						<textarea class="form-control" rows="3" placeholder="עוד משהו שתרצה/י להוסיף?" name="remarks"></textarea>\
-						<span class="help-block">שדה זה ישלח לעורך בלבד</span>\
-					</div>\
-					<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>\
-					<button class="btn btn-default btn-cancel">בטל</button>\
-				</form>';
+var basicForm = $(".news form").clone();
 
 function createBasicArticle(section){
 	var form = getForm(section);
 	//take unique values from form
-	displayContact = ($(form).find("[name=display-contact]").is(":checked"));
+	displayContact = ($(form).find(".display-contact").is(":checked"));
 	//append article
 	$(section).find(".article").append(basicArticle);
 	//put unique values in article
@@ -291,16 +275,16 @@ var basicArticle = '<span class="summary"></span>\
 	<span class="email"> </span>\
 	<p class="more"></p>'
 var contactDisplayCheckbox = '<div class="form-group">\
-								<label><input type="checkbox" name="display-contact" checked>הצג איש קשר</label>\
-								<span class="help-block">במקרה שאיש הקשר לא יוצג, השם והטלפון יראו רק בפני עורך העלון</span>\
+								<label><input type="checkbox" name="entry.1525170664" class="display-contact" checked>הצג איש קשר</label>\
+								<span class="help-block">במקרה שאיש הקשר לא יוצג, השם והטלפון יראו רק בפני עורך הניוזלטר</span>\
 							</div>'
 function formToNewsOrMatzov(form){
-	$(form).find("[name=phone]").parents(".form-group").after(contactDisplayCheckbox);
+	$(form).find(".phone").parents(".form-group").after(contactDisplayCheckbox);
 }
 function createJobsArticle(){
 	//take values from form
-	title = $(".jobs.form-container [name=title]").val().toString();
-	company = $(".jobs.form-container [name=company]").val().toString();
+	title = $(".jobs.form-container .title").val().toString();
+	company = $(".jobs.form-container .company").val().toString();
 	//append article
 	$(".jobs.section").find(".article").append(jobsArticle);
 	//put values in article
@@ -310,19 +294,19 @@ function createJobsArticle(){
 var jobDetails =	'<div class="form-group">\
 						<label for="title" class="control-label col-sm-2" style="float:right">תפקיד</label>\
 						<div class="col-sm-5">\
-							<input type="text" class="form-control" name="title"></input>\
+							<input type="text" class="form-control title" name="entry.1629897663"></input>\
 						</div>\
 					</div>\
 					<div class="form-group">\
 						<label for="company" class="control-label col-sm-2" style="float:right">חברה</label>\
 						<div class="col-sm-5">\
-							<input type="text" class="form-control" name="company"></input>\
+							<input type="text" class="form-control company" name="entry.25675530" class=""></input>\
 						</div>\
 					</div>';
 function formToJobs(){
-	var nameFeild = $(".jobs.form-container [name=name]").parents(".form-group");
+	var nameFeild = $(".jobs.form-container .name").parents(".form-group");
 	$(".jobs.form-container hr").after(nameFeild);
-	$(".jobs.form-container [name=name]").parents(".form-group").after(jobDetails);
+	$(".jobs.form-container .name").parents(".form-group").after(jobDetails);
 }
 
 var jobsArticle = '<span class="name"></span>\
@@ -336,24 +320,24 @@ var jobsArticle = '<span class="name"></span>\
 	<span class="phone"> </span>\
 	<p class="more"></p>'
 function createNewsForm(){
-	$(".news.form-container").append(basicForm);
 	formToNewsOrMatzov($(".news.form-container"));
-	$(".news.form-container h5").append("הגשת כתבה למהדורה הבאה");
+	$(".news.form-container h5").html("הגשת כתבה למהדורה הבאה");
 }
 var formTabs = '<ul class="nav nav-tabs">\
 				  <li role="presentation" class="active"><a href="#">הגשת בקשה</a></li>\
 				  <li role="presentation"><a href="#">בוגר החודש</a></li>\
 				</ul>';
 function createMatzovForm(){
-	$(".matzov-for-matzov.form-container").prepend(basicForm);
+	console.log($(".matzov-for-matzov.form-container").html());
+	$(basicForm).clone().prependTo(".matzov-for-matzov.form-container");
 	$(".matzov-for-matzov.form-container").prepend(formTabs);
 	formToNewsOrMatzov($(".matzov-for-matzov.form-container"));
-	$(".matzov-for-matzov.form-container h5").append("הגשת בקשה למהדורה הבאה");
+	$(".matzov-for-matzov.form-container h5:first").html("הגשת בקשה למהדורה הבאה");
 }
 function createJobsForm(){
-	$(".jobs.form-container").append(basicForm);
+	$(basicForm).clone().appendTo(".jobs.form-container");
 	formToJobs($(".jobs.form-container"));
-	$(".jobs.form-container h5").append("הגשת הצעת עבודה למהדורה הבאה");
+	$(".jobs.form-container h5").html("הגשת הצעת עבודה למהדורה הבאה");
 }
 $(".matzov-for-matzov.form-container").on("click", ".nav-tabs a", function(){
 	var i = $(this).parent().index();
