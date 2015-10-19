@@ -30,7 +30,6 @@ $(document).ready(function(){
 	$(".form-container").hide();
 	createNewsForm($(".news.form-container"));
 	createMatzovForm($(".matzov-for-matzov.form-container"));
-	console.log($(".matzov-for-matzov.form-container").html());
 	createJobsForm($(".jobs.form-container"));
 	setNewsFormPosition();
 	//validate
@@ -204,11 +203,11 @@ $(".form-container").on("click", ".btn-review", function(){
 	var form = $(this).parents(".form-container");
 	
 	//take common values from form
-	summary = $(form).find(".summary").val().toString();
+	summary = $(form).find("iframe").eq(0).contents().find("p").text().toString();
 	name = $(form).find(".name").val().toString();
 	phoneNumber = $(form).find(".phone").val().toString();
 	email = $(form).find(".email").val().toString();
-	more = $(form).find(".more").val().toString();
+	more = $(form).find("iframe").eq(1).contents().find("p").text().toString();
 	
 	//take and put unique values separately
 	$(section).hasClass("jobs")?  
@@ -328,7 +327,6 @@ var formTabs = '<ul class="nav nav-tabs">\
 				  <li role="presentation"><a href="#">בוגר החודש</a></li>\
 				</ul>';
 function createMatzovForm(){
-	console.log($(".matzov-for-matzov.form-container").html());
 	$(basicForm).clone().prependTo(".matzov-for-matzov.form-container");
 	$(".matzov-for-matzov.form-container").prepend(formTabs);
 	formToNewsOrMatzov($(".matzov-for-matzov.form-container"));
