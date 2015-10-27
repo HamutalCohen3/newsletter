@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="heb">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv=" X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>Matzov Newsletter</title>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="newsletter.css" rel="stylesheet"> 
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		
+		
+<!-- 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+ -->
+		<!-- Place inside the <head> of your HTML -->
+		<script type="text/javascript" src="tinymce/js/tinymce/tinymce.min.js"></script>
+		<script type="text/javascript">
+		var errorMessage = "";
+		tinymce.init({
+			selector: "textarea.summary, textarea.more, textarea.background, textarea.help-with",
+			menubar : false,
+			toolbar: "undo redo | bold | style-h3 style-h4 | alignleft alignright | ltr rtl | bullist | link",
+			statusbar:false,
+			plugins: "link, stylebuttons, directionality",
+			directionality : 'rtl',
+			//validation
+			setup : function(ed) {
+                ed.on('change', function() {
+					//get error label of active editor
+					var errorLabel = $(tinyMCE.activeEditor.getElement()).nextAll(".error").first();
+					validateEditor(ed.getContent(), errorLabel);
+					return false;
+                });
+				//set attribute that determines what fields are invalid
+				ed.on('init', function(){
+					$("textarea.summary, textarea.background, textarea.help-with").prev(".mce-tinymce").attr("aria-invalid", "true");
+					return false;
+				});
+            }
+		 });
+		 tinyMCE.PluginManager.add('stylebuttons', function(editor, url) {
+			['pre', 'p', 'code', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].forEach(function(name){
+				editor.addButton("style-" + name, {
+					tooltip: "Toggle " + name,
+					text: name.toUpperCase(),
+					onClick: function() { editor.execCommand('mceToggleFormat', false, name); },
+					onPostRender: function() {
+						var self = this, setup = function() {
+							editor.formatter.formatChanged(name, function(state) {
+								self.active(state);
+							});
+						};
+						editor.formatter ? setup() : editor.on('init', setup);
+					}
+				})
+			});
+		});
+		</script>
+	</head>
+	<body class="body">
+		<div dir="rtl">
+			<center>		
+			<!-- h e a d e r
+			<div  class="col-md-12 header">
+					<div class="col-md-6 col-md-offset-3" valign="top">לבוגרי מצו"ב, הבאנו עבורכם את מהדורת מאי מלאה בעידכונים</div>
+			</div> -->
+			<div class="col-md-12">
+				<div  class="col-md-12">
+					<div class="col-md-8 col-md-offset-2" valign="top">
+						<img align="right" alt="" src="https://ci3.googleusercontent.com/proxy/4zQ0MEfV3MioDlASfWFOx1eSbwPd6poHX8YGq02XMRN56i4-sInfjNhuhFXte_luU7A77VutuYw_ltl0jFQp3poLZpgqJ-pKfSt-tS1YXimpK9RmCj-9aNLDkoPJn8GLiN4J7e_nXu480MqkbavETqeg6UAAftMYibFQhQ=s0-d-e1-ft#http://gallery.mailchimp.com/1a40591115e4e6ba8225c2cfb/images/aff6881c-a124-4cff-a3ee-63f801fd2955.png"
+						style="width:311px">
+					</div>
+				</div>
+				<div  class="col-md-12 header newsletter-title" style="">
+					<div class="col-md-8 col-md-offset-2" valign="top">
+						<h1 class="head-line">ניוזלטר מצו"ב מהדורת </h1>
+					</div>
+				</div>
+			</div>
+			<!-- newsletter -->
+			<div class="col-md-8 col-md-offset-2" id="newsletter-container">
+			<!-- instructions -->
+				<div class="section instructions">אתם מוזמנים להגיש תכנים לניוזלטר בעמוד זה. התכנים יבדקו לקראת הוצאת המהדורה החודשית וייתכן ויעברו עריכה. 
+				בכל מקרה, אם הגשתם תוכן למהדורה הקרובה תקבלו טיוטה של המהדורה 24-48 שעות לפני פירסומה. 
+				בכל שאלה בנוגע לפירסום תכנים ניתן לפנות <a href="mailto:yuval@cohenyuval.com" target="_blank">ליובל כהן</a>.</div>
+			<!-- news + matzov -->
+				<!-- n e w s   section-->
+				<div class="section news col-md-6 col-sm-12">
+					<h4 style="">חדשות ועידכונים</h4>
+				<!-- n e w s   articles-->
+					<ul style="padding:0;margin-top:0px">
+						<li>____ _______ ___ ___
+						____ ______ ____ _____ ___
+						___ ___ ____ ____<a href="#">לפרטים נוספים</a>
+						</li>
+
+						<li>__ ____ ____
+							___ ____ ______ _____ ________ _________
+							____ ___ ____ ___<a href="#">לפרטים נוספים</a>
+						</li>
+						<li>
+							<div class="article">
+							<!-- article -->
+							</div>
+							<div class='btn-group'>
+								<button class='btn btn-primary btn-change'>ערוך</button>
+								<button class='btn btn-success btn-send' name="submit">שלח</button>
+							</div>
+						</li>	
+					</ul>
+					<button class="btn btn-primary btn-form-display">להגשת אייטמים למהדורה הבאה</button>
+				</div>	
+				<div class="news-s"></div>
+				<hr class="resp-small">
+			<!-- m a t z o v - f o r - m a t z o v   section-->
+				<div class="section matzov-for-matzov col-md-6 col-sm-12">
+					<h4>מצו"ב בשביל מצו"ב</h4>
+			<!-- m a t z o v - f o r - m a t z o v   articles-->
+					<ul style="padding:0;margin-top:0px">
+						<li>____ _______ ___ ___
+						____ ______ ____ _____ ___
+						___ ___ ____ ____<a href="#">לפרטים נוספים</a>
+						</li>
+
+						<li>__ ____ ____
+							___ ____ ______ _____ ________ _________
+							____ ___ ____ ___<a href="#">לפרטים נוספים</a>
+						</li>	
+						<li>
+							<div class="article">
+							<!-- article -->
+							</div>
+							<div class="spotlight-article">
+								<p class='name'><b>שם: </b></p>
+								<p class='title'><b>תפקיד: </b></p>
+								<p class='background'></p>
+								<p class='help-with'></p>
+								<p class='contact-way'><b>הדרך הכי טובה ליצור איתי קשר: </b></p>
+							</div>
+							<div class='btn-group'>
+								<button class='btn btn-primary btn-change'>ערוך</button>
+								<button class='btn btn-success btn-send' name="submit">שלח</button>
+							</div>
+						</li>
+					</ul>
+					<button class="btn btn-primary btn-form-display">להגשת בקשות למהדורה הבאה</button>
+				</div>
+			<!-- requests -->
+				<div class="news-l">
+					<div class="form-container news col-md-12">
+						<form role="form" class="form-horizontal" action="https://docs.google.com/forms/d/1s8BrnXqe7TdypYTHBhbuecjLbIslyDrwno2YNfI_OHM/formResponse?embedded=true" method="POST">
+						<h5></h5>
+							<hr>
+							<div class="form-group"> 
+								<label for="summary" class="control-label">בקיצור</label>
+								<textarea class="form-control summary" rows="5" placeholder=" ספר/י בקצרה על הנושא (בעברית)" name="entry.1593542857"></textarea>
+								<span class="help-block">שדה זה יופיע במייל התפוצה של הניוזלטר.</span>
+							</div>
+							<div class="form-group">
+								<label for="name" class="control-label col-sm-2" style="float:right">איש קשר</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control name" name="entry.1415989532"></input>
+								</div>
+								<span class="help-block">על איש הקשר להיות בוגר יחידת מצו״ב, אתם מוזמנים לחבר את הפונים עם בעלי התפקידים באירגון שלכם כגון רכז כוח אדם אבל חשוב לנו שהפנייה של בוגרי היחידה תתקבל ע״י מישהו עם רקע משותף.</span>
+							</div>
+							<div class="form-group">
+								<label for="phone" class="control-label col-sm-2" style="float:right">מספר טלפון</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control phone" name="entry.1144585106"></input>
+									<span class="help-block">טלפון איש קשר (רשות)</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label><input type="checkbox" name="entry.1525170664" class="display-contact" checked>הצג איש קשר</label>
+								<span class="help-block">במקרה שאיש הקשר לא יוצג, השם והטלפון יראו רק בפני עורך הניוזלטר</span>
+							</div>
+							<div class="form-group">
+								<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
+								<div class="col-sm-5">
+									<input type="email" class="form-control email" name="entry.1743980726"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="more" class="control-label">פרטים נוספים</label>
+								<textarea class="form-control more" rows="7" placeholder="פרט/י" name="entry.1365421559"></textarea>
+								<span class="help-block">שדה זה יופיע למתעניינים שילחצו "לפרטים נוספים", ניתן להכניס טקסט או קישור (רשות)</span>
+							</div>
+							<div class="form-group">
+								<label for="remarks" class="control-label">הערות לעורך</label>
+								<textarea class="form-control remarks" rows="3" placeholder="עוד משהו שתרצה/י להוסיף?" name="entry.1017349982"></textarea>
+								<span class="help-block">שדה זה ישלח לעורך בלבד</span>
+							</div>
+							<input style="display:none" type="text" name="entry.1771963398" class="article-type"/>
+							<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
+							<button class="btn btn-default btn-cancel">בטל</button>
+							<!-- part of google forms -->
+							<input type="hidden" name="draftResponse" value="[,,&quot;-8417536324509269873&quot;]">
+							<input type="hidden" name="pageHistory" value="0">
+							<input type="hidden" name="fbzx" value="-8417536324509269873">
+							<button name="submit" style="display:none">שלח</button>
+						</form>
+					</div>
+				</div>
+				<div class="form-container matzov-for-matzov col-md-12">
+					<ul class="nav nav-tabs">
+					  <li role="presentation" class="active"><a href="#">הגשת בקשה</a></li>
+					  <li role="presentation"><a href="#">בוגר החודש</a></li>
+					</ul>
+					<form role="form" class="spotlight form-horizontal" style="display:none" action="https://docs.google.com/forms/d/1s8BrnXqe7TdypYTHBhbuecjLbIslyDrwno2YNfI_OHM/formResponse?embedded=true" method="POST" novalidate="novalidate">
+						<h5>הצעת מועמד לבוגר החודש</h5>
+						<hr>
+						<div class="form-group">
+							<label for="name" class="col-sm-2 control-label">שם</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control name" name="entry.1415989532"> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="title" class="col-sm-2 control-label">תפקיד</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control title" name="entry.1629897663">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="background" class="control-label">רקע</label>
+							<textarea type="text" class="form-control background" name="entry.1822079008"></textarea><!--   -->
+						</div>
+						<div class="form-group">
+							<label for="background" class="control-label">אשמח לעזור עם</label>
+							<textarea type="text" class="form-control help-with" name="entry.1243490321"></textarea><!--   -->
+						</div>
+						<div class="form-group">
+							<label for="contact-way" class="control-label">הדרך הכי טובה ליצור איתי קשר:</label>
+							<textarea type="text" class="form-control contact-way" name="entry.1949401518"></textarea><!--   -->
+						</div>
+						<div class="form-group">
+							<label for="remarks" class="control-label">הערות לעורך</label>
+							<textarea class="form-control remarks" rows="3" placeholder="עוד משהו שתרצה/י להוסיף?" name="entry.1017349982"></textarea>
+							<span class="help-block">שדה זה ישלח לעורך בלבד</span>
+						</div>
+						<input style="display:none" type="text" name="entry.1771963398" class="article-type" value="בוגר החודש"/>
+						<button type="submit" class="btn btn-default btn-review-spotlight">הצג כתבה</button>
+						<button class="btn btn-default btn-cancel">בטל</button>
+						<!-- part of google forms -->
+						<input type="hidden" name="draftResponse" value="[,,&quot;-8417536324509269873&quot;]">
+						<input type="hidden" name="pageHistory" value="0">
+						<input type="hidden" name="fbzx" value="-8417536324509269873">
+						<button name="submit" style="display:none">שלח</button>
+					</form>
+				</div>
+				<hr>
+			<!-- j o b s    section-->		
+				<div class="section jobs col-md-12 col-sm-12">	
+					<h4>הצעות עבודה</h4>
+			<!-- j o b s    articles-->
+					<ul style="padding:0;margin-top:0">
+						<li style="margin-bottom:10px">_____ __ __ _____ ___ __ ___ ___ _____
+						__ ___ ______ ____ ___ __ ____ ____ ____<a href="#">לפרטים נוספים</a>
+						 </li>
+						<li style="margin-bottom:10px">___ ___ ____ ___ ___ ______ __ ___ ___ _____ 
+						____ ___ ___ ______ __ _____ ___ ___ ____ ____ ___  ____ ____ ___ ____ __ ___
+						___ _____ __ ___ ______ ____ ___ _____ ____ ___
+						____ _____ __ ____ __<a href="#">לפרטים נוספים</a>
+						</li>
+						<li>
+							<div class="article">
+							<!-- article -->
+							</div>
+							<div class='btn-group'>
+								<button class='btn btn-primary btn-change'>ערוך</button>
+								<button class='btn btn-success btn-send'>שלח</button>
+							</div>
+						</li>	
+					</ul>
+					<button class="btn btn-primary btn-form-display">להגשת הצעות עבודה למהדורה הבאה</button>
+				</div>		
+			<!--j o b s form-->
+				<div class="form-container jobs col-md-12">
+				<!-- form -->
+				</div>
+			</div>
+			<!--footer-->
+			<div id="footer" class="col-md-12">
+				<div class="col-md-6 col-md-offset-3">
+					נבנה ע"י חמוטל כהן <a href=https://github.com/HamutalCohen3>github</a> <a href="https://github.com/HamutalCohen3">linkedIn</a>
+					<!-- <em>Copyright © 2015 אירגון בוגרי מצו"ב, All rights reserved.</em>
+					<br>
+					אתם מקבלים עידכון זה עקב הרשמתך לרשימת התפוצה של אירגון בוגרי מצו"ב (<a href="http://matzov-alumni.com" target="_blank">matzov-alumni.com</a>).
+					<br>
+					<br>
+					<strong>Our mailing address is:</strong>
+					<br>
+					<div><span>אירגון בוגרי מצו"ב</span>
+						<div>
+							<div>Herzel st. 12</div><span>Qiryat Tivon</span> <span>36091</span>
+							<div>Israel</div>
+						</div>
+						<br><a href="http://matzov-alumni.us4.list-manage.com/vcard?u=1a40591115e4e6ba8225c2cfb&amp;id=664ca47396" target="_blank">Add us to your address book</a>
+					</div>
+					<br>
+					<br>
+					<a href="http://matzov-alumni.us4.list-manage.com/unsubscribe?u=1a40591115e4e6ba8225c2cfb&amp;id=664ca47396&amp;e=bcf98936e4&amp;c=ee69a01d3d" style="word-wrap:break-word;color:#808080;font-weight:normal;text-decoration:underline" target="_blank">unsubscribe from this list</a>&nbsp;&nbsp;&nbsp;
+					<a href="http://matzov-alumni.us4.list-manage.com/profile?u=1a40591115e4e6ba8225c2cfb&amp;id=664ca47396&amp;e=bcf98936e4" style="word-wrap:break-word;color:#808080;font-weight:normal;text-decoration:underline" target="_blank">update subscription preferences</a>&nbsp;
+					<br>
+					<br>
+					<a href="http://www.mailchimp.com/monkey-rewards/?utm_source=freemium_newsletter&amp;utm_medium=email&amp;utm_campaign=monkey_rewards&amp;aid=1a40591115e4e6ba8225c2cfb&amp;afl=1" target="_blank">
+					<img src="https://ci5.googleusercontent.com/proxy/oCj6URbrdRxWlnMteh_uAHxvVX0zzgiIs7fpdDeW7FjqMSwDeSlq96WNgFN0XlhcFSZprmnU5SmMolV9MYHf-xzLvp8aLykjcNuWeX1jSJrWGfHQqoRk_WtHYsflxsg=s0-d-e1-ft#http://gallery.mailchimp.com/089443193dd93823f3fed78b4/images/banner1.gif" border="0" alt="Email Marketing Powered by MailChimp" title="MailChimp Email Marketing"></a> -->
+				</div>
+			</div>
+			</center>
+		</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+				
+				
+		 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="jquery.js"></script>
+    <script src="jquery.linkify.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+ 	
+	<script src="newsletter.js"></script>
+	<script src="jquery-form-validation/dist/jquery.validate.min.js"></script>
+	
+	<!-- Latest compiled and minified CSS --><!-- 
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+
+	<!-- jQuery library -->
+
+	<!-- Latest compiled JavaScript -->
+	<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+	
+	<!-- bootstrap-wysihtml5
+	<link rel="stylesheet" href="bootstrap_wysihtml5.css">
+	<script src="bootstrap_wysihtml5.js"></script> -->
+	
+	<!-- wysihtml5 parser rules
+	<script src="xing-wysihtml5-fb0cfe4/parser_rules/advanced.js"></script>
+	Library
+	<script src="xing-wysihtml5-fb0cfe4/dist/wysihtml5-0.3.0.min.js"></script> -->
+	
+	<!-- mercury!! -->
+	<!-- <link href="mercury/stylesheets/mercury.bundle.css" media="screen" rel="stylesheet" type="text/css">
+	<script src="mercury/javascripts/mercury.min.js" type="text/javascript"></script> -->
+	</body>
+</html>	
