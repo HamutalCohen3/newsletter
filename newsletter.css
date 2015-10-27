@@ -56,6 +56,9 @@ h2{
 	margin:20px;
 	line-height:125%;
 }
+p{
+	margin:0 0 5px;
+}
 .newsletter-title{
 	margin-bottom:30px;
 }
@@ -155,6 +158,10 @@ label.error{
 }
 .mce-tinymce{
 	clear:both;
+}
+.instructions{
+	clear:both;
+	width:100%;
 }
 
 

@@ -1,46 +1,73 @@
-/* function postToGoogle() {
- 
-                $.ajax({
-                    url: "https://docs.google.com/a/hamutalcohen3.github.io/forms/d/1s8BrnXqe7TdypYTHBhbuecjLbIslyDrwno2YNfI_OHM/formResponse",
-					//https://docs.google.com/a/SOMEDOMAIN.com/forms/d/XXXXXXX/formResponse
-					//url: "https://docs.google.com/yourFormURL/formResponse",
-                    data: {"entry.2": summary, "entry.3": name, "entry.4": email},
-                    type: "POST",
-					crossDomain: true,
-                    dataType: "xml",
-                    statusCode: {
-                        0: function() {
-                            alert("failed :(");
-                        },
-                        200: function() {
-                            alert("success!");
-                        }
-                    }
-                });
-            }
-             
-            $(document).ready(function(){
-                $('.btn-send').click(function() {
-                    postToGoogle();
-                    return false;
-                });
-            }); */
+
 
 $(document).ready(function(){
+	var d = new Date();
+	var hebMonth;
+	var year = d.getFullYear();
+	switch (d.getMonth()){
+		case 0:
+			hebMonth = "ינואר";
+			break;
+		case 1:
+			hebMonth = "פברואר";
+			break;
+		case 2:
+			hebMonth = "מרץ";
+			break;
+		case 3:
+			hebMonth = "אפריל";
+			break;
+		case 4:
+			hebMonth = "מאי";
+			break;
+		case 5:
+			hebMonth = "יוני";
+			break;
+		case 6:
+			hebMonth = "יולי";
+			break;
+		case 7:
+			hebMonth = "אוגוסט";
+			break;
+		case 8:
+			hebMonth = "ספטמבר";
+			break;
+		case 9:
+			hebMonth = "אוקטובר";
+			break;
+		case 10:
+			hebMonth = "נובמבר";
+			break;
+		case 11:
+			hebMonth = "דצמבר";
+			break;
+	}
+	$(".head-line").append(hebMonth + " " + year);
 	$(".form-container").hide();
-	createNewsForm($(".news.form-container"));
-	createMatzovForm($(".matzov-for-matzov.form-container"));
-	createJobsForm($(".jobs.form-container"));
-	setNewsFormPosition();
+	//create News Form
+	$(".news.form-container h5").html("הגשת כתבה למהדורה הבאה");
+	$(".news.form-container .article-type").val("חדשות");
+	//create matzov form
+	$(".matzov-for-matzov.form-container ul:first").after($(basicForm).clone());
+	$(".matzov-for-matzov.form-container h5:first").html("הגשת בקשה למהדורה הבאה");
+	$(".matzov-for-matzov.form-container form:first .article-type").val('מצו"ב בשביל מצו"ב');
+	//create jobs form
+	$(basicForm).clone().appendTo(".jobs.form-container");
+	$(".jobs.form-container h5").html("הגשת הצעת עבודה למהדורה הבאה");
+	$(".jobs.form-container .article-type").val("הצעות עבודה");
+
+	setNewsFormPosition();//responsive
+
 	//validate
 	$("form").each(function(){
 		$(this).validate({
 			rules: {
-				//summary
+				//summary *** not really working with editor
 				'entry.1593542857': {
 					required: true,
 					minlength: 30, 
-					maxlength: 600
+					maxlength: 600,
+					hebrew: true
 				},
 				//name
 				"entry.1415989532": {
@@ -51,9 +78,7 @@ $(document).ready(function(){
 				//phone
 				"entry.1144585106": {
 					required: false,
-					minlength: 7,
-					maxlength: 10,
-					number:true
+					minlength: 7
 				},
 				//email
 				"entry.1743980726": {
@@ -64,13 +89,15 @@ $(document).ready(function(){
 				"entry.1365421559": {
 					maxlength:10000
 				},
-				//title
-				"entry.1629897663": {
-					required: true
+				//help-with
+				'entry.1243490321' : {
+					required: true,
+					maxlength: 600
 				},
-				//company
-				"entry.25675530": {
-					required: true
+				//background
+				'entry.1822079008' : {
+					required: true,
+					maxlength: 600
 				}
 			},
 			messages: {
@@ -88,9 +115,7 @@ $(document).ready(function(){
 				},
 				//phone
 				"entry.1144585106": {
-					minlength: "בין 7 ל10 ספרות",
-					maxlength: "בין 7 ל10 ספרות",
-					number:"אנא הכנס/י רק ספרות בין 0 ל9"
+					minlength: "לפחות 7 ספרות",
 				},
 				//email
 				"entry.1743980726": {
@@ -101,22 +126,32 @@ $(document).ready(function(){
 				"entry.1365421559": {
 					maxlength: "עד 1000 תווים"
 				},
-				//title
-				"entry.1629897663": {
-					required: "אנא מלא/י שם תפקיד"
+				//help-with
+				'entry.1243490321': {
+					required: "שדה חובה",
+					maxlength: "עד 600 תווים"
 				},
-				//company
-				"entry.25675530": {
-					required: "אנא מלא/י שם חברה"
+				//background
+				'entry.1822079008': {
+					required: "שדה חובה",
+					maxlength: "עד 600 תווים"
 				}
 			}
 		});
 	});
 	
 	$(".section li:last-child").hide();
+	$(".matzov-for-matzov.section .spotlight-article").hide();
+	//error messages for editor fields
+	$("textarea.summary, textarea.background, textarea.help-with").after("<label class='error' style='display:none'></label>");
 });
-$('.btn-send').click(function() {
+$('.btn-send').click(function() {//***
 	var form = getForm($(this).parents(".section"));
+	//if need to differ between spotlight and regular forms
+	if ($(form).hasClass("matzov-for-matzov")){
+		isSpotlight? $(".spotlight [name=submit]").click() : $(".matzov-for-matzov form:first [name=submit]").click();
+		return false;
+	}
 	$(form).find("[name=submit]").click();
 	return false;
 });
@@ -138,7 +173,7 @@ function getForm(section){
     case "section news col-md-6 col-sm-12":
         return $(".news.form-container");
     case "section matzov-for-matzov col-md-6 col-sm-12":
-        return $(".matzov-for-matzov.form-container");
+		return $(".matzov-for-matzov.form-container");
 	case "section jobs col-md-12 col-sm-12":
         return $(".jobs.form-container");
     default:
@@ -163,18 +198,10 @@ $(".form-container").on("click", ".btn-cancel", function(){
 	}, 300);
 	$(this).parents("form").trigger("reset");
 	$(this).parents(".form-container").hide(300);
-	$(this).parents(".form-container").find(".btn-form-display").show(300);
+	var section = getSection($(this).parents(".form-container"));
+	$(section).find(".btn-form-display").show(300);
 	return false;
 })
-//form variables
-var summary = "";
-var name = "";
-var phoneNumber = "";
-var displayContact = true;
-var email = "";
-var title = "";
-var company = "";
-var more = "";
 
 function getSection(form){
 	switch($(form).attr("class")) {
@@ -191,10 +218,22 @@ function getSection(form){
 
 $(".form-container").on("click", ".btn-review", function(){
 	$(this).parents("form").validate();
-	//if invalid
-	if (!$(this).parents("form").find("input, textarea").valid()){
+	
+	//validate tinymce
+	var validCount = 0;
+	$(this).parents("form").find("textarea.summary").prevAll(".mce-tinymce").first().each(function(){
+		var content = $(this).find("iframe").eq(0).contents().find("body").html();
+		var label = $(this).nextAll(".error").first();
+		if (!validateEditor(content, label)){validCount++;}
+		console.log("validCount " + validCount);
+		console.log("content " + content);
+		console.log(label);
+	});
+	
+	//if invalid show invalid field
+	if (!$(this).parents("form").find("input, textarea").valid() || validCount !== 0){
 		$("html, body").animate({
-			scrollTop: $(this).parents(".form-container").find("[aria-invalid=true]").first().offset().top
+			scrollTop: $(this).parents("form").find("[aria-invalid=true]").first().offset().top
 		}, 300);
 		return false;
 	}
@@ -202,27 +241,34 @@ $(".form-container").on("click", ".btn-review", function(){
 	var section = getSection($(this).parents(".form-container"));
 	var form = $(this).parents(".form-container");
 	
-	//take common values from form
-	summary = $(form).find("iframe").eq(0).contents().find("p").text().toString();
-	name = $(form).find(".name").val().toString();
-	phoneNumber = $(form).find(".phone").val().toString();
-	email = $(form).find(".email").val().toString();
-	more = $(form).find("iframe").eq(1).contents().find("p").text().toString();
+	//if matzov article show spotlight instead
+	if($(section).hasClass("matzov-for-matzov")){
+		$(".matzov-for-matzov.section .article").show();
+		$(".matzov-for-matzov.section .spotlight-article").hide();
+	}
 	
-	//take and put unique values separately
-	$(section).hasClass("jobs")?  
-		createJobsArticle() : createBasicArticle(section);
+
+	//take values from form
+	var summary = $(form).find("iframe").eq(0).contents().find("body").html();
+	var name = $(form).find(".name").val().toString();
+	var phoneNumber = $(form).find(".phone").val().toString();
+	var email = $(form).find(".email").val().toString();
+	var more = $(form).find("iframe").eq(1).contents().find("body").html();
+	
+	createArticle(section);
 		
-	//put common values in form
+	//put values in form
 	$(section).find(".summary").append(summary);
 	$(section).find(".summary").linkify();
 	$(section).find(".name").append(name);
-	if(phoneNumber != ""){$(section).find(".phone").append().append(phoneNumber);}
-	$(section).find(".email").append().append(email);
-	$(section).find(".email").linkify();
-	if(more != ""){
-		$(section).find("p.more").append(more);
-		$(section).find("p.more").linkify();
+	if(phoneNumber != ""){$(section).find(".phone").append(phoneNumber);}
+	else {$(section).find(".phone").hide();}
+	$(section).find(".name").attr('href', 'mailto:' + email);
+	//if more is not empty display link
+	if(more != '<p><br data-mce-bogus="1"></p>'){
+		$(section).find(".more").append(more);
+		$(section).find(".more p").linkify();
+		
 	}
 	else{
 		$(section).find(".toggle-more").hide();
@@ -230,12 +276,16 @@ $(".form-container").on("click", ".btn-review", function(){
 	$("p.more").hide();
 	
 	//hide and show elements accordingly
-	$(section).find("li:last-child").show();
-	$(section).find(".btn-form-display").hide();
-	$(this).parents(".form-container").hide(300);
+	$(section).find("li:last-child").show();//article
+	$(section).find(".btn-form-display").hide();//btn-form-display
+	$(this).parents(".form-container").hide(300);//form
+	//scroll to article
 	$("html, body").animate({
 		scrollTop: $(section).find("li:last-child").offset().top
 	}, 300);
+	
+	//declare if article is from matzov section
+	isSpotlight = false;
 	return false;
 })
 
@@ -243,6 +293,8 @@ $(".section").on("click", ".btn-change", function(){
 	$(this).parents("li").find(".article").empty();
 	$(this).parents("li").hide();
 	var form = getForm($(this).parents(".section"));
+	console.log("isSpotlight = " + isSpotlight);
+	isSpotlight? $(".matzov-for-matzov.form-container ul.nav a:last").click(): $(".matzov-for-matzov.form-container ul.nav a:first").click();
 	$(form).show(300);
 	$("html, body").animate({
 		scrollTop: $(form).offset().top
@@ -255,88 +307,24 @@ $("#newsletter-container").on("click", ".toggle-more", function(){
 })
 var basicForm = $(".news form").clone();
 
-function createBasicArticle(section){
+function createArticle(section){
 	var form = getForm(section);
 	//take unique values from form
-	displayContact = ($(form).find(".display-contact").is(":checked"));
+	var displayContact = ($(form).find(".display-contact").is(":checked"));
 	//append article
-	$(section).find(".article").append(basicArticle);
+	$(section).find(".article").append(article);
 	//put unique values in article
 	if(!displayContact){
-		$(section).find(".name").hide();
-		$(section).find(".phone").hide();
+		$(section).find(".contact-details").hide();
 	}
 }
-var basicArticle = '<span class="summary"></span>\
-	<a href=# class="toggle-more"> לפרטים נוספים </a>\
-	<br><span class="name"></span>\
-	<span class="phone"> </span>\
-	<span class="email"> </span>\
-	<p class="more"></p>'
-var contactDisplayCheckbox = '<div class="form-group">\
-								<label><input type="checkbox" name="entry.1525170664" class="display-contact" checked>הצג איש קשר</label>\
-								<span class="help-block">במקרה שאיש הקשר לא יוצג, השם והטלפון יראו רק בפני עורך הניוזלטר</span>\
-							</div>'
-function formToNewsOrMatzov(form){
-	$(form).find(".phone").parents(".form-group").after(contactDisplayCheckbox);
-}
-function createJobsArticle(){
-	//take values from form
-	title = $(".jobs.form-container .title").val().toString();
-	company = $(".jobs.form-container .company").val().toString();
-	//append article
-	$(".jobs.section").find(".article").append(jobsArticle);
-	//put values in article
-	$(".jobs.section").find(".title").append(title);
-	$(".jobs.section").find(".company").append(company);
-}
-var jobDetails =	'<div class="form-group">\
-						<label for="title" class="control-label col-sm-2" style="float:right">תפקיד</label>\
-						<div class="col-sm-5">\
-							<input type="text" class="form-control title" name="entry.1629897663"></input>\
-						</div>\
-					</div>\
-					<div class="form-group">\
-						<label for="company" class="control-label col-sm-2" style="float:right">חברה</label>\
-						<div class="col-sm-5">\
-							<input type="text" class="form-control company" name="entry.25675530" class=""></input>\
-						</div>\
-					</div>';
-function formToJobs(){
-	var nameFeild = $(".jobs.form-container .name").parents(".form-group");
-	$(".jobs.form-container hr").after(nameFeild);
-	$(".jobs.form-container .name").parents(".form-group").after(jobDetails);
-}
+var article = '<span class="summary"></span>\
+	<p><a href=# class="toggle-more"> לפרטים נוספים </a></p>\
+	<span class="contact-details">איש קשר <a class="name" target="_blank"></a>\
+	<span class="phone"> או בטלפון  </span></span>\
+	<p class="more"></p>';
 
-var jobsArticle = '<span class="name"></span>\
-	<span class="title"> מחפש/ת </span> \
-	<span class="company"> בחברה </span>.\
-	<br>\
-	<span class="summary"> </span>\
-	<a href=# class="toggle-more"> לפרטים נוספים</a>\
-	<br>\
-	<span class="email"> </span>\
-	<span class="phone"> </span>\
-	<p class="more"></p>'
-function createNewsForm(){
-	formToNewsOrMatzov($(".news.form-container"));
-	$(".news.form-container h5").html("הגשת כתבה למהדורה הבאה");
-}
-var formTabs = '<ul class="nav nav-tabs">\
-				  <li role="presentation" class="active"><a href="#">הגשת בקשה</a></li>\
-				  <li role="presentation"><a href="#">בוגר החודש</a></li>\
-				</ul>';
-function createMatzovForm(){
-	$(basicForm).clone().prependTo(".matzov-for-matzov.form-container");
-	$(".matzov-for-matzov.form-container").prepend(formTabs);
-	formToNewsOrMatzov($(".matzov-for-matzov.form-container"));
-	$(".matzov-for-matzov.form-container h5:first").html("הגשת בקשה למהדורה הבאה");
-}
-function createJobsForm(){
-	$(basicForm).clone().appendTo(".jobs.form-container");
-	formToJobs($(".jobs.form-container"));
-	$(".jobs.form-container h5").html("הגשת הצעת עבודה למהדורה הבאה");
-}
+//move between matzov article and spotlight
 $(".matzov-for-matzov.form-container").on("click", ".nav-tabs a", function(){
 	var i = $(this).parent().index();
 	$(".matzov-for-matzov.form-container form").hide();
@@ -345,3 +333,107 @@ $(".matzov-for-matzov.form-container").on("click", ".nav-tabs a", function(){
 	$(this).parents("li").addClass("active");
 	return false;
 })
+
+//is spotlight the active form
+var isSpotlight = false;
+
+$(".spotlight .btn-review-spotlight").click(function(){
+	$(this).parents("form").validate();
+	//validate tinymce
+	var validCount = 0;
+	$(this).parents("form").find(".mce-tinymce").each(function(){
+		var content = $(this).find("iframe").eq(0).contents().find("body").html();
+		var label = $(this).nextAll(".error").first();
+		if (!validateEditor(content, label)) {validCount++;}
+	});
+	//if invalid scroll to invalid field
+	if (!$(this).parents("form").find("input, textarea").valid() || validCount!== 0){
+		console.log("invalid");
+		$("html, body").animate({
+			scrollTop: $(this).parents("form").find("[aria-invalid=true]").first().offset().top
+		}, 300);
+		return false;
+	}
+	//add article
+	$(".matzov-for-matzov .article").hide();
+	$(".matzov-for-matzov .spotlight-article").show();
+	
+	//put content in variables
+	var background = $(".spotlight").find("iframe").eq(0).contents().find("body").html();
+	var helpWith = $(".spotlight").find("iframe").eq(1).contents().find("body").html();
+		
+	//add the article content
+	$(".spotlight-article .name").append($(".spotlight .name").val().toString());
+	$(".spotlight-article .title").append($(".spotlight .title").val().toString());
+	$(".spotlight-article .background").empty();
+	$(".spotlight-article .background").append(background);
+	$(".spotlight-article p.background").children(":first-child").prepend("<b style='font-size:14px'>רקע: </b>");//keep the original size (14px) if put in h3\h4
+	$(".spotlight-article .help-with").empty();
+	$(".spotlight-article .help-with").append(helpWith);
+	$(".spotlight-article p.help-with").children(":first-child").prepend("<b style='font-size:14px'>אשמח לעזור עם: </b>");//keep the original size (14px) if put in h3\h4
+	$(".spotlight-article .contact-way").append($(".spotlight .contact-way").val().toString());
+	
+	//hide and show elements accordingly
+	$(".matzov-for-matzov.section").find("li:last-child").show();
+	$(".matzov-for-matzov.section").find(".btn-form-display").hide();
+	$(".form-container.matzov-for-matzov").hide(300);
+	$("html, body").animate({
+		scrollTop: $(".matzov-for-matzov.section").find("li:last-child").offset().top
+	}, 300);
+	
+	isSpotlight = true;
+	
+	return false;
+})
+$(".matzov-for-matzov.form-container ul.nav a:not(:first)").click(function(){
+	var form = getForm($("div.matzov-for-matzov.section"));
+    $('html, body').animate({
+        scrollTop: ($(form).offset().top - 17)// 17 - the gap between the screen top and the form when using .scrollTop() and .show()
+	}, 1);//make the scroll happen after the mce scroll!
+})
+
+//Hebrew check
+function hebrewValidate(html){
+	if(html.search(/[א-ת]/) === -1){
+		errorMessage = "תקציר הרשומה צריך להיות בעברית";
+		return false;
+	}
+	return true;
+}
+//length validate
+function lengthValidate(html, min, max){
+	if($(html).text().length < min){
+		errorMessage = "מלא/י לפחות " + min + " תוים.";
+		return false;
+	}
+	if($(html).text().length >= max){
+		errorMessage = "מלא/י לכל היותר " + max + " תוים.";
+		return false;
+	}
+	return true;
+}
+//is the field empty?
+function isContentFull(html){
+	if($(html).text() === ""){
+		errorMessage = "שדה נדרש";
+		return false;
+	}
+	return true;
+}
+
+function validateEditor(content, errorLabel) {
+					
+					if (!isContentFull(content) || !lengthValidate(content, 30, 600) || !hebrewValidate(content)){
+						$(errorLabel).empty();
+						$(errorLabel).append(errorMessage);
+						$(errorLabel).show();
+						$(tinyMCE.activeEditor.getContainer()).attr("aria-invalid", "true");
+						return false;
+					}
+					else{
+						$(errorLabel).hide();
+						$(errorLabel).empty();
+						$(tinyMCE.activeEditor.getContainer()).attr("aria-invalid", "false");
+						return true;
+					}
+                };

@@ -1,0 +1,20 @@
+
+
+תביני איך עושים שהאתר יופיע תחת 
+matzovalumni.com 
+שזה דומיין שקניתי. המילות מפתח שקשורות לזה הן ״
+custom domain for a github pages  website״
+עוד מילים לקרוא עליהן:
+domain, domain record, name server, cname record, a record
+how to host gihub-pages website from custom domain?
+לשים תחת 
+matzovalumni.com/form-submit
+ 
+אם זה לינק, פשוט הטקסט ״לפרטים נוספים״ וזה לינק לכתובת שהשאירו.
+
+לגרום ל
+mailto:
+לעבוד!!
+
+למה אני לא מצליחה להגיע לתיקייה הנכונה?? 
+cd ..

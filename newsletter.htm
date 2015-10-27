@@ -23,13 +23,28 @@
 		<!-- Place inside the <head> of your HTML -->
 		<script type="text/javascript" src="tinymce/js/tinymce/tinymce.min.js"></script>
 		<script type="text/javascript">
+		var errorMessage = "";
 		tinymce.init({
-			selector: "textarea.summary, textarea.more",
+			selector: "textarea.summary, textarea.more, textarea.background, textarea.help-with",
 			menubar : false,
 			toolbar: "undo redo | bold | style-h3 style-h4 | alignleft alignright | ltr rtl | bullist | link",
 			statusbar:false,
 			plugins: "link, stylebuttons, directionality",
-			directionality : 'rtl'
+			directionality : 'rtl',
+			//validation
+			setup : function(ed) {
+                ed.on('change', function() {
+					//get error label of active editor
+					var errorLabel = $(tinyMCE.activeEditor.getElement()).nextAll(".error").first();
+					validateEditor(ed.getContent(), errorLabel);
+					return false;
+                });
+				//set attribute that determines what fields are invalid
+				ed.on('init', function(){
+					$("textarea.summary, textarea.background, textarea.help-with").prev(".mce-tinymce").attr("aria-invalid", "true");
+					return false;
+				});
+            }
 		 });
 		 tinyMCE.PluginManager.add('stylebuttons', function(editor, url) {
 			['pre', 'p', 'code', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].forEach(function(name){
@@ -53,25 +68,29 @@
 	<body class="body">
 		<div dir="rtl">
 			<center>		
-			<!--h e a d e r -->
+			<!-- h e a d e r
 			<div  class="col-md-12 header">
 					<div class="col-md-6 col-md-offset-3" valign="top">לבוגרי מצו"ב, הבאנו עבורכם את מהדורת מאי מלאה בעידכונים</div>
-			</div>
+			</div> -->
 			<div class="col-md-12">
 				<div  class="col-md-12">
-					<div class="col-md-6 col-md-offset-3" valign="top">
+					<div class="col-md-8 col-md-offset-2" valign="top">
 						<img align="right" alt="" src="https://ci3.googleusercontent.com/proxy/4zQ0MEfV3MioDlASfWFOx1eSbwPd6poHX8YGq02XMRN56i4-sInfjNhuhFXte_luU7A77VutuYw_ltl0jFQp3poLZpgqJ-pKfSt-tS1YXimpK9RmCj-9aNLDkoPJn8GLiN4J7e_nXu480MqkbavETqeg6UAAftMYibFQhQ=s0-d-e1-ft#http://gallery.mailchimp.com/1a40591115e4e6ba8225c2cfb/images/aff6881c-a124-4cff-a3ee-63f801fd2955.png"
 						style="width:311px">
 					</div>
 				</div>
 				<div  class="col-md-12 header newsletter-title" style="">
-					<div class="col-md-6 col-md-offset-3" valign="top">
-						<h1 style="">ניוזלטר מצו"ב מהדורת מאי 2015</h1>
+					<div class="col-md-8 col-md-offset-2" valign="top">
+						<h1 class="head-line">ניוזלטר מצו"ב מהדורת </h1>
 					</div>
 				</div>
 			</div>
 			<!-- newsletter -->
 			<div class="col-md-8 col-md-offset-2" id="newsletter-container">
+			<!-- instructions -->
+				<div class="section instructions">אתם מוזמנים להגיש תכנים לניוזלטר בעמוד זה. התכנים יבדקו לקראת הוצאת המהדורה החודשית וייתכן ויעברו עריכה. 
+				בכל מקרה, אם הגשתם תוכן למהדורה הקרובה תקבלו טיוטה של המהדורה 24-48 שעות לפני פירסומה. 
+				בכל שאלה בנוגע לפירסום תכנים ניתן לפנות <a href="mailto:yuval@cohenyuval.com" target="_blank">ליובל כהן</a>.</div>
 			<!-- news + matzov -->
 				<!-- n e w s   section-->
 				<div class="section news col-md-6 col-sm-12">
@@ -92,7 +111,7 @@
 							<!-- article -->
 							</div>
 							<div class='btn-group'>
-								<button class='btn btn-primary btn-change'>שנה</button>
+								<button class='btn btn-primary btn-change'>ערוך</button>
 								<button class='btn btn-success btn-send' name="submit">שלח</button>
 							</div>
 						</li>	
@@ -119,8 +138,15 @@
 							<div class="article">
 							<!-- article -->
 							</div>
+							<div class="spotlight-article">
+								<p class='name'><b>שם: </b></p>
+								<p class='title'><b>תפקיד: </b></p>
+								<p class='background'></p>
+								<p class='help-with'></p>
+								<p class='contact-way'><b>הדרך הכי טובה ליצור איתי קשר: </b></p>
+							</div>
 							<div class='btn-group'>
-								<button class='btn btn-primary btn-change'>שנה</button>
+								<button class='btn btn-primary btn-change'>ערוך</button>
 								<button class='btn btn-success btn-send' name="submit">שלח</button>
 							</div>
 						</li>
@@ -143,6 +169,7 @@
 								<div class="col-sm-5">
 									<input type="text" class="form-control name" name="entry.1415989532"></input>
 								</div>
+								<span class="help-block">על איש הקשר להיות בוגר יחידת מצו״ב, אתם מוזמנים לחבר את הפונים עם בעלי התפקידים באירגון שלכם כגון רכז כוח אדם אבל חשוב לנו שהפנייה של בוגרי היחידה תתקבל ע״י מישהו עם רקע משותף.</span>
 							</div>
 							<div class="form-group">
 								<label for="phone" class="control-label col-sm-2" style="float:right">מספר טלפון</label>
@@ -150,6 +177,10 @@
 									<input type="text" class="form-control phone" name="entry.1144585106"></input>
 									<span class="help-block">טלפון איש קשר (רשות)</span>
 								</div>
+							</div>
+							<div class="form-group">
+								<label><input type="checkbox" name="entry.1525170664" class="display-contact" checked>הצג איש קשר</label>
+								<span class="help-block">במקרה שאיש הקשר לא יוצג, השם והטלפון יראו רק בפני עורך הניוזלטר</span>
 							</div>
 							<div class="form-group">
 								<label for="email" class="control-label col-sm-2" style="float:right">דוא"ל</label>
@@ -167,6 +198,7 @@
 								<textarea class="form-control remarks" rows="3" placeholder="עוד משהו שתרצה/י להוסיף?" name="entry.1017349982"></textarea>
 								<span class="help-block">שדה זה ישלח לעורך בלבד</span>
 							</div>
+							<input style="display:none" type="text" name="entry.1771963398" class="article-type"/>
 							<button type="submit" class="btn btn-default btn-review">הצג כתבה</button>
 							<button class="btn btn-default btn-cancel">בטל</button>
 							<!-- part of google forms -->
@@ -178,9 +210,50 @@
 					</div>
 				</div>
 				<div class="form-container matzov-for-matzov col-md-12">
-					<form class="spotlight" style="display:none">
+					<ul class="nav nav-tabs">
+					  <li role="presentation" class="active"><a href="#">הגשת בקשה</a></li>
+					  <li role="presentation"><a href="#">בוגר החודש</a></li>
+					</ul>
+					<form role="form" class="spotlight form-horizontal" style="display:none" action="https://docs.google.com/forms/d/1s8BrnXqe7TdypYTHBhbuecjLbIslyDrwno2YNfI_OHM/formResponse?embedded=true" method="POST" novalidate="novalidate">
 						<h5>הצעת מועמד לבוגר החודש</h5>
 						<hr>
+						<div class="form-group">
+							<label for="name" class="col-sm-2 control-label">שם</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control name" name="entry.1415989532"> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="title" class="col-sm-2 control-label">תפקיד</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control title" name="entry.1629897663">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="background" class="control-label">רקע</label>
+							<textarea type="text" class="form-control background" name="entry.1822079008"></textarea><!--   -->
+						</div>
+						<div class="form-group">
+							<label for="background" class="control-label">אשמח לעזור עם</label>
+							<textarea type="text" class="form-control help-with" name="entry.1243490321"></textarea><!--   -->
+						</div>
+						<div class="form-group">
+							<label for="contact-way" class="control-label">הדרך הכי טובה ליצור איתי קשר:</label>
+							<textarea type="text" class="form-control contact-way" name="entry.1949401518"></textarea><!--   -->
+						</div>
+						<div class="form-group">
+							<label for="remarks" class="control-label">הערות לעורך</label>
+							<textarea class="form-control remarks" rows="3" placeholder="עוד משהו שתרצה/י להוסיף?" name="entry.1017349982"></textarea>
+							<span class="help-block">שדה זה ישלח לעורך בלבד</span>
+						</div>
+						<input style="display:none" type="text" name="entry.1771963398" class="article-type" value="בוגר החודש"/>
+						<button type="submit" class="btn btn-default btn-review-spotlight">הצג כתבה</button>
+						<button class="btn btn-default btn-cancel">בטל</button>
+						<!-- part of google forms -->
+						<input type="hidden" name="draftResponse" value="[,,&quot;-8417536324509269873&quot;]">
+						<input type="hidden" name="pageHistory" value="0">
+						<input type="hidden" name="fbzx" value="-8417536324509269873">
+						<button name="submit" style="display:none">שלח</button>
 					</form>
 				</div>
 				<hr>
@@ -202,7 +275,7 @@
 							<!-- article -->
 							</div>
 							<div class='btn-group'>
-								<button class='btn btn-primary btn-change'>שנה</button>
+								<button class='btn btn-primary btn-change'>ערוך</button>
 								<button class='btn btn-success btn-send'>שלח</button>
 							</div>
 						</li>	
@@ -216,8 +289,9 @@
 			</div>
 			<!--footer-->
 			<div id="footer" class="col-md-12">
-				<div class="col-md-6 col-md-offset-3"
-					<em>Copyright © 2015 אירגון בוגרי מצו"ב, All rights reserved.</em>
+				<div class="col-md-6 col-md-offset-3">
+					נבנה ע"י חמוטל כהן <a href=https://github.com/HamutalCohen3>github</a> <a href="https://github.com/HamutalCohen3">linkedIn</a>
+					<!-- <em>Copyright © 2015 אירגון בוגרי מצו"ב, All rights reserved.</em>
 					<br>
 					אתם מקבלים עידכון זה עקב הרשמתך לרשימת התפוצה של אירגון בוגרי מצו"ב (<a href="http://matzov-alumni.com" target="_blank">matzov-alumni.com</a>).
 					<br>
@@ -238,7 +312,7 @@
 					<br>
 					<br>
 					<a href="http://www.mailchimp.com/monkey-rewards/?utm_source=freemium_newsletter&amp;utm_medium=email&amp;utm_campaign=monkey_rewards&amp;aid=1a40591115e4e6ba8225c2cfb&amp;afl=1" target="_blank">
-					<img src="https://ci5.googleusercontent.com/proxy/oCj6URbrdRxWlnMteh_uAHxvVX0zzgiIs7fpdDeW7FjqMSwDeSlq96WNgFN0XlhcFSZprmnU5SmMolV9MYHf-xzLvp8aLykjcNuWeX1jSJrWGfHQqoRk_WtHYsflxsg=s0-d-e1-ft#http://gallery.mailchimp.com/089443193dd93823f3fed78b4/images/banner1.gif" border="0" alt="Email Marketing Powered by MailChimp" title="MailChimp Email Marketing"></a>
+					<img src="https://ci5.googleusercontent.com/proxy/oCj6URbrdRxWlnMteh_uAHxvVX0zzgiIs7fpdDeW7FjqMSwDeSlq96WNgFN0XlhcFSZprmnU5SmMolV9MYHf-xzLvp8aLykjcNuWeX1jSJrWGfHQqoRk_WtHYsflxsg=s0-d-e1-ft#http://gallery.mailchimp.com/089443193dd93823f3fed78b4/images/banner1.gif" border="0" alt="Email Marketing Powered by MailChimp" title="MailChimp Email Marketing"></a> -->
 				</div>
 			</div>
 			</center>
