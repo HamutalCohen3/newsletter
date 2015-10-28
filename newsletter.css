@@ -62,7 +62,7 @@ p{
 .newsletter-title{
 	margin-bottom:30px;
 }
-#newsletter-container .section{
+#newsletter-container .section, .spotlight-section{
 	padding:30px;
 	float:right;
 	text-align:right;
@@ -163,5 +163,23 @@ label.error{
 	clear:both;
 	width:100%;
 }
-
+.instructions{
+	background-color: #5E5E61;
+	color: #fff;
+	font-size: 16px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+.instructions a{
+	color:#99CCFF;
+}
+div.rtl-float{
+	float:right;
+}
+.spotlight-section p{
+	margin:20px 0px 10px;
+}
+.spotlight-section ul{
+	list-style-type:none;
+}
 
