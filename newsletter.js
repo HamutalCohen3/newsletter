@@ -167,7 +167,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	$(".section li:last-child").hide();
+	$(".section .btn-group, .section .article").hide();
 	$(".matzov-for-matzov.section .spotlight-article").hide();
 	//error messages for editor fields
 	$("textarea.summary, textarea.background, textarea.help-with").after("<label class='error' style='display:none'></label>");
@@ -210,6 +210,10 @@ function getForm(section){
 
 
 $(".section").on("click", ".btn-form-display", function() {
+	//show other sections' buttons
+	$(".window-toggle").show();
+	$(this).parents(".section").find(".window-toggle").hide();
+	
 	$(".form-container").hide();
 	var form = getForm($(this).parents(".section"));
 	$(form).show(300);
@@ -220,13 +224,17 @@ $(".section").on("click", ".btn-form-display", function() {
 
 
 $(".form-container").on("click", ".btn-cancel", function(){
+	//show section's toggle part
+	var section = getSection($(this).parents(".form-container"));
+	$(section).find(".window-toggle").show();
+	$(section).find(".window-toggle .btn-form-display").show();
+	$(section).find(".window-toggle .article, .window-toggle .btn-group").hide();
+	
 	$("html, body").animate({
 		scrollTop: $(this).parentsUntil("#newsletter-container").last().prevAll(".section").first().offset().top
 	}, 300);
 	$(this).parents("form").trigger("reset");
 	$(this).parents(".form-container").hide(300);
-	var section = getSection($(this).parents(".form-container"));
-	$(section).find(".btn-form-display").show(300);
 	return false;
 })
 
@@ -265,7 +273,7 @@ $(".form-container").on("click", ".btn-review", function(){
 	var section = getSection($(this).parents(".form-container"));
 	var form = $(this).parents(".form-container");
 	
-	//if matzov article, dont show spotlight instead
+	//if matzov article, don't show spotlight instead
 	if($(section).hasClass("matzov-for-matzov")){
 		$(".matzov-for-matzov.section .article").show();
 		$(".matzov-for-matzov.section .spotlight-article").hide();
@@ -320,13 +328,16 @@ $(".form-container").on("click", ".btn-review", function(){
 	$("p.more").hide();
 	
 	//hide and show elements accordingly
-	$(section).find("li:last-child").show();//article
 	$(section).find(".btn-form-display").hide();//btn-form-display
 	$(this).parents(".form-container").hide(300);//form
 	//scroll to article
 	$("html, body").animate({
-		scrollTop: $(section).find("li:last-child").offset().top
+		scrollTop: $(section).find(".article").offset().top
 	}, 300);
+	//show section's toggle part
+	$(section).find(".btn-group").show();//btn-group
+	$(section).find(".article").show();//btn-group
+	$(section).find(".window-toggle").show();
 	
 	//declare if article is from matzov section
 	isSpotlight = false;
@@ -334,9 +345,18 @@ $(".form-container").on("click", ".btn-review", function(){
 })
 
 $(".section").on("click", ".btn-change", function(){
-	$(this).parents("li").find(".article").empty();
-	$(this).parents("li").hide();
+	//show other sections' buttons
+	$(".window-toggle").show();
+	$(this).parents(".section").find(".window-toggle").hide();
+	//get toggle buttons ready if shown
+	$(this).find(".window-toggle .article, .window-toggle .btn-group").hide();
+	$(this).find(".window-toggle .btn-form-display").show();
+	//hide other forms
+	$(".form-container").hide();
 	var form = getForm($(this).parents(".section"));
+	$(form).show(300);
+	//remake article
+	$(this).parents("li").find(".article").empty();
 	isSpotlight? $(".matzov-for-matzov.form-container ul.nav a:last").click(): $(".matzov-for-matzov.form-container ul.nav a:first").click();
 	$(form).show(300);
 	$("html, body").animate({
