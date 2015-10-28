@@ -299,8 +299,8 @@ $(".form-container").on("click", ".btn-review", function(){
 	//determine if contact details are shown
 	var displayContact = ($(form).find(".display-contact").is(":checked"));
 	
-	//create new article
-	$(this).parents(".section").find(".article").empty();
+	//create new article er
+	$(section).find(".article").empty();
 	//append article
 	$(section).find(".article").append(article);
 	
