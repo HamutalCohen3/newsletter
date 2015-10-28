@@ -57,6 +57,11 @@ $(document).ready(function(){
 	$(".jobs.form-container .article-type").val("הצעות עבודה");
 
 	setNewsFormPosition();//responsive
+	
+	jQuery.validator.addMethod( "hebrew", function(value){
+		console.log(value);
+		return hebrewValidate(value);
+	}, "תקציר הרשומה צריך להיות בעברית")
 
 	//validate
 	$("form").each(function(){
@@ -89,13 +94,25 @@ $(document).ready(function(){
 				"entry.1365421559": {
 					maxlength:10000
 				},
+				//title
+				'entry.1629897663' : {
+					required: true,
+					maxlength: 200
+				},
 				//help-with
 				'entry.1243490321' : {
 					required: true,
+					hebrew: true,
 					maxlength: 600
 				},
 				//background
 				'entry.1822079008' : {
+					required: true,
+					hebrew: true,
+					maxlength: 600
+				},
+				//contact way
+				'entry.1949401518' : {
 					required: true,
 					maxlength: 600
 				}
@@ -126,6 +143,11 @@ $(document).ready(function(){
 				"entry.1365421559": {
 					maxlength: "עד 1000 תווים"
 				},
+				//title
+				'entry.1629897663' : {
+					required: "שדה חובה",
+					maxlength: "עד 200 תוים"
+				},
 				//help-with
 				'entry.1243490321': {
 					required: "שדה חובה",
@@ -135,6 +157,11 @@ $(document).ready(function(){
 				'entry.1822079008': {
 					required: "שדה חובה",
 					maxlength: "עד 600 תווים"
+				},
+				//contact way
+				'entry.1949401518' : {
+					required: "שדה חובה",
+					maxlength: "עד 300 תווים"
 				}
 			}
 		});
@@ -217,20 +244,17 @@ function getSection(form){
 }
 
 $(".form-container").on("click", ".btn-review", function(){
+	//validate form
 	$(this).parents("form").validate();
-	
 	//validate tinymce
 	var validCount = 0;
 	$(this).parents("form").find("textarea.summary").prevAll(".mce-tinymce").first().each(function(){
 		var content = $(this).find("iframe").eq(0).contents().find("body").html();
 		var label = $(this).nextAll(".error").first();
 		if (!validateEditor(content, label)){validCount++;}
-		console.log("validCount " + validCount);
-		console.log("content " + content);
-		console.log(label);
 	});
 	
-	//if invalid show invalid field
+	//if form is invalid, scroll to invalid field
 	if (!$(this).parents("form").find("input, textarea").valid() || validCount !== 0){
 		$("html, body").animate({
 			scrollTop: $(this).parents("form").find("[aria-invalid=true]").first().offset().top
@@ -241,21 +265,29 @@ $(".form-container").on("click", ".btn-review", function(){
 	var section = getSection($(this).parents(".form-container"));
 	var form = $(this).parents(".form-container");
 	
-	//if matzov article show spotlight instead
+	//if matzov article, dont show spotlight instead
 	if($(section).hasClass("matzov-for-matzov")){
 		$(".matzov-for-matzov.section .article").show();
 		$(".matzov-for-matzov.section .spotlight-article").hide();
 	}
-	
 
 	//take values from form
 	var summary = $(form).find("iframe").eq(0).contents().find("body").html();
 	var name = $(form).find(".name").val().toString();
 	var phoneNumber = $(form).find(".phone").val().toString();
 	var email = $(form).find(".email").val().toString();
-	var more = $(form).find("iframe").eq(1).contents().find("body").html();
+	var moreHtml = $(form).find("iframe").eq(1).contents().find("body").html();
+	var moreHref = $(moreHtml).text().trim();
+	//determine if contact details are shown
+	var displayContact = ($(form).find(".display-contact").is(":checked"));
 	
-	createArticle(section);
+	//append article
+	$(section).find(".article").append(article);
+	
+	//put unique values in article
+	if(!displayContact){
+		$(section).find(".contact-details").hide();
+	}
 		
 	//put values in form
 	$(section).find(".summary").append(summary);
@@ -264,12 +296,24 @@ $(".form-container").on("click", ".btn-review", function(){
 	if(phoneNumber != ""){$(section).find(".phone").append(phoneNumber);}
 	else {$(section).find(".phone").hide();}
 	$(section).find(".name").attr('href', 'mailto:' + email);
-	//if more is not empty display link
-	if(more != '<p><br data-mce-bogus="1"></p>'){
-		$(section).find(".more").append(more);
-		$(section).find(".more p").linkify();
-		
+	//is more empty?
+	if(moreHref != ""){
+		//if more is a link
+		if ((moreHref.indexOf(" ") === -1) && !hebrewValidate(moreHref)){
+			$(section).find(".toggle-more").attr("href", moreHref);
+		}
+		//if more is text
+		else{
+			$(section).find(".more").append(moreHtml);
+			$(section).find(".more p").linkify();
+			//bind the click function to לפרטים נוספים
+			$(section).find(".toggle-more").click(function(){
+				$(this).parents("li").find(".more").toggle(200);
+				return false;
+			})
+		}
 	}
+	//if more is empty
 	else{
 		$(section).find(".toggle-more").hide();
 	}
@@ -293,7 +337,6 @@ $(".section").on("click", ".btn-change", function(){
 	$(this).parents("li").find(".article").empty();
 	$(this).parents("li").hide();
 	var form = getForm($(this).parents(".section"));
-	console.log("isSpotlight = " + isSpotlight);
 	isSpotlight? $(".matzov-for-matzov.form-container ul.nav a:last").click(): $(".matzov-for-matzov.form-container ul.nav a:first").click();
 	$(form).show(300);
 	$("html, body").animate({
@@ -301,25 +344,13 @@ $(".section").on("click", ".btn-change", function(){
 	}, 300);
 	return false;
 })
-$("#newsletter-container").on("click", ".toggle-more", function(){
-	$(this).parents("li").find(".more").toggle(200);
-	return false;
-})
+
 var basicForm = $(".news form").clone();
 
 function createArticle(section){
-	var form = getForm(section);
-	//take unique values from form
-	var displayContact = ($(form).find(".display-contact").is(":checked"));
-	//append article
-	$(section).find(".article").append(article);
-	//put unique values in article
-	if(!displayContact){
-		$(section).find(".contact-details").hide();
-	}
 }
 var article = '<span class="summary"></span>\
-	<p><a href=# class="toggle-more"> לפרטים נוספים </a></p>\
+	<p><a href=# class="toggle-more" target="_blank"> לפרטים נוספים </a></p>\
 	<span class="contact-details">איש קשר <a class="name" target="_blank"></a>\
 	<span class="phone"> או בטלפון  </span></span>\
 	<p class="more"></p>';
@@ -337,18 +368,12 @@ $(".matzov-for-matzov.form-container").on("click", ".nav-tabs a", function(){
 //is spotlight the active form
 var isSpotlight = false;
 
+//clone the spotlight article to reuse
+var spotlightArticle = $(".spotlight-article").html();
+
 $(".spotlight .btn-review-spotlight").click(function(){
 	$(this).parents("form").validate();
-	//validate tinymce
-	var validCount = 0;
-	$(this).parents("form").find(".mce-tinymce").each(function(){
-		var content = $(this).find("iframe").eq(0).contents().find("body").html();
-		var label = $(this).nextAll(".error").first();
-		if (!validateEditor(content, label)) {validCount++;}
-	});
-	//if invalid scroll to invalid field
-	if (!$(this).parents("form").find("input, textarea").valid() || validCount!== 0){
-		console.log("invalid");
+	if (!$(this).parents("form").find("input, textarea").valid()){
 		$("html, body").animate({
 			scrollTop: $(this).parents("form").find("[aria-invalid=true]").first().offset().top
 		}, 300);
@@ -357,21 +382,18 @@ $(".spotlight .btn-review-spotlight").click(function(){
 	//add article
 	$(".matzov-for-matzov .article").hide();
 	$(".matzov-for-matzov .spotlight-article").show();
-	
-	//put content in variables
-	var background = $(".spotlight").find("iframe").eq(0).contents().find("body").html();
-	var helpWith = $(".spotlight").find("iframe").eq(1).contents().find("body").html();
 		
-	//add the article content
+	//put empty copy in article
+	$(".spotlight-article").empty();
+	$(".spotlight-article").append(spotlightArticle);
+	//fill the article with content
 	$(".spotlight-article .name").append($(".spotlight .name").val().toString());
 	$(".spotlight-article .title").append($(".spotlight .title").val().toString());
-	$(".spotlight-article .background").empty();
-	$(".spotlight-article .background").append(background);
-	$(".spotlight-article p.background").children(":first-child").prepend("<b style='font-size:14px'>רקע: </b>");//keep the original size (14px) if put in h3\h4
-	$(".spotlight-article .help-with").empty();
-	$(".spotlight-article .help-with").append(helpWith);
-	$(".spotlight-article p.help-with").children(":first-child").prepend("<b style='font-size:14px'>אשמח לעזור עם: </b>");//keep the original size (14px) if put in h3\h4
+	$(".spotlight-article .background").append($(".spotlight .background").val().toString());
+	$(".spotlight-article .help-with").append($(".spotlight .help-with").val().toString());
 	$(".spotlight-article .contact-way").append($(".spotlight .contact-way").val().toString());
+	//linkily
+	$(".spotlight-article").linkify();
 	
 	//hide and show elements accordingly
 	$(".matzov-for-matzov.section").find("li:last-child").show();
@@ -392,7 +414,7 @@ $(".matzov-for-matzov.form-container ul.nav a:not(:first)").click(function(){
 	}, 1);//make the scroll happen after the mce scroll!
 })
 
-//Hebrew check
+//Hebrew validate
 function hebrewValidate(html){
 	if(html.search(/[א-ת]/) === -1){
 		errorMessage = "תקציר הרשומה צריך להיות בעברית";
