@@ -288,8 +288,6 @@ $(".form-container").on("click", ".btn-review", function(){
 	var section = getSection($(this).parents(".form-container"));
 	var form = $(this).parents(".form-container");
 	
-	//create new article
-	$(this).parents(".section").find(".article").empty();
 	
 	//take values from form
 	var summary = $(form).find("iframe").eq(0).contents().find("body").html();
@@ -301,6 +299,8 @@ $(".form-container").on("click", ".btn-review", function(){
 	//determine if contact details are shown
 	var displayContact = ($(form).find(".display-contact").is(":checked"));
 	
+	//create new article
+	$(this).parents(".section").find(".article").empty();
 	//append article
 	$(section).find(".article").append(article);
 	
@@ -373,7 +373,15 @@ $(".section, .spotlight-section").on("click", ".btn-change", function(){
 
 
 //clone the spotlight article to reuse
-var spotlightArticle = $(".spotlight-article").html();
+var spotlightArticle = "<div class='spotlight-article'>\
+									<p class='name'><b>שם: </b></p>\
+									<p class='title'><b>תפקיד: </b></p>\
+									<p class='background'><b>רקע: \
+									</b></p>\
+									<p class='help-with'><b>אשמח לעזור עם: \
+									</b></p>\
+									<p class='contact-way'><b>הדרך הכי טובה ליצור איתי קשר: </b></p>\
+								</div>";
 
 $(".btn-review-spotlight").click(function(){
 	$(this).parents("form").validate();
