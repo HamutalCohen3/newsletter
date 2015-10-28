@@ -299,7 +299,7 @@ $(".form-container").on("click", ".btn-review", function(){
 	//determine if contact details are shown
 	var displayContact = ($(form).find(".display-contact").is(":checked"));
 	
-	//create new article er
+	//create new article
 	$(section).find(".article").empty();
 	//append article
 	$(section).find(".article").append(article);
@@ -342,18 +342,18 @@ $(".form-container").on("click", ".btn-review", function(){
 	//hide and show elements accordingly
 	$(section).find(".btn-form-display").hide();//btn-form-display
 	$(this).parents(".form-container").hide(300);//form
-	//scroll to article
-	$("html, body").animate({
-		scrollTop: $(section).find(".article").offset().top
-	}, 300);
 	//show section's toggle part
 	$(section).find(".btn-group").show();//btn-group
 	$(section).find(".article").show();//btn-group
 	$(section).find(".window-toggle").show();
+	//scroll to article
+	$("html, body").animate({
+		scrollTop: $(section).find(".article").offset().top
+	}, 300);
 	
 	return false;
 })
-
+var test;
 $(".section, .spotlight-section").on("click", ".btn-change", function(){
 	//show other sections' buttons
 	$(".window-toggle").show();
