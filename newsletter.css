@@ -184,5 +184,7 @@ div.rtl-float{
 .spotlight-section ul{
 	list-style-type:none;
 }
-/* test */
+.fa{
+	margin-right: 5px;
+}
 
