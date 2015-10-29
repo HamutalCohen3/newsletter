@@ -175,6 +175,7 @@ label.error{
 }
 div.rtl-float{
 	float:right;
+	padding:30px 0px 30px 30px;
 }
 .spotlight-section p{
 	margin:20px 0px 10px;
