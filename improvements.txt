@@ -1,16 +1,12 @@
 
-לגרום ל
-mailto:
-לעבוד!!
-**לוודא
-
 לחבר את הכתבות בספרדשיט
 
 
-
-
-
-
+בדיקה:
+העורך לא מזהה את הפעולות של קופי פייסט ואז אי אפשר לעשות אנדו
+שהעורך יהיה גדול יותר?
+הקישורים יוצאים מהדיב כי השורה ארוכה מידי
+החלון קישורים בעורך בלתי אפשרי לתפעול מהפלאפון
 
 
 תביני איך עושים שהאתר יופיע תחת 
@@ -23,14 +19,10 @@ how to host gihub-pages website from custom domain?
 לשים תחת 
 matzovalumni.com/form-submit
 
+לשים את הדף בלינקד אין*
 
 
-פרס מהנשיא
+https://www.linkedin.com/profile/view?id=AAIAABskCB4BBlizO1xHuXN3_jjGi0LIY8P-9ZA&trk=nav_responsive_tab_profile
+https://www.linkedin.com/profile/view?id=AAMAAAHPr-sBJaMI4jrnqzO-_F18lnmovkvBZdk&authType=name&authToken=tPZ3&trk=hp-feed-member-photo
 
-אנחנו רוצים לאחל לבלה בבלה חכנכנלחע שזכה בפרס םקיער םי םיםי םןיץ מאוד גאים בו וכו על החברה שלו fdgdrb שהרוויחה הרבה וזה.'ךןעט קפןו עפו ןוי חמקער ףםגכח נףםיג גץץ.
-
-קלדורןעי קדרי עףםןקדי
-קוםןעי ףקםויע ףי 
-ןקי םןעי ouh ;
-iug;iu
-טרה להלה כםעי גף מוזמנים לשלוח לאימייל hgslriugh@odihg.com וגם מוזמנים להיכנס לאתר https://help.github.com/articles/tips-for-configuring-a-cname-record-with-your-dns-provider/
+<link href="/favicon.png" rel="icon">
